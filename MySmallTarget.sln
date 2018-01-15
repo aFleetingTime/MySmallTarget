@@ -5,17 +5,30 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day06", "Day06", "{C70AB2B0-A722-406A-99BE-C0D4B8F0D8BE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHubTestFile", "GitHubTestFile", "{B193B791-C95D-4670-8507-30E896213F0A}"
-	ProjectSection(SolutionItems) = preProject
-		TextFile1.cpp = TextFile1.cpp
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "单继承", "Day06\Test\Test.vcxproj", "{1486581B-73B4-44F2-8762-F372D8DE83BC}"
 EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Debug|x64.ActiveCfg = Debug|x64
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Debug|x64.Build.0 = Debug|x64
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Debug|x86.ActiveCfg = Debug|Win32
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Debug|x86.Build.0 = Debug|Win32
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Release|x64.ActiveCfg = Release|x64
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Release|x64.Build.0 = Release|x64
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Release|x86.ActiveCfg = Release|Win32
+		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B193B791-C95D-4670-8507-30E896213F0A} = {C70AB2B0-A722-406A-99BE-C0D4B8F0D8BE}
+		{1486581B-73B4-44F2-8762-F372D8DE83BC} = {C70AB2B0-A722-406A-99BE-C0D4B8F0D8BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9ABB9283-38E5-4BB6-B2D2-49BCF452277A}
