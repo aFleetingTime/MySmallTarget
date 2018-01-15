@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day06", "Day06", "{C70AB2B0
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "单继承", "Day06\Test\Test.vcxproj", "{1486581B-73B4-44F2-8762-F372D8DE83BC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "多继承以及虚继承", "多继承以及虚继承\多继承以及虚继承.vcxproj", "{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "多态", "多态\多态.vcxproj", "{1284BFD8-1DD6-4132-9804-8837BC631A65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,12 +27,30 @@ Global
 		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Release|x64.Build.0 = Release|x64
 		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Release|x86.ActiveCfg = Release|Win32
 		{1486581B-73B4-44F2-8762-F372D8DE83BC}.Release|x86.Build.0 = Release|Win32
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Debug|x64.ActiveCfg = Debug|x64
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Debug|x64.Build.0 = Debug|x64
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Debug|x86.ActiveCfg = Debug|Win32
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Debug|x86.Build.0 = Debug|Win32
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Release|x64.ActiveCfg = Release|x64
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Release|x64.Build.0 = Release|x64
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Release|x86.ActiveCfg = Release|Win32
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B}.Release|x86.Build.0 = Release|Win32
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Debug|x64.ActiveCfg = Debug|x64
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Debug|x64.Build.0 = Debug|x64
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Debug|x86.ActiveCfg = Debug|Win32
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Debug|x86.Build.0 = Debug|Win32
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Release|x64.ActiveCfg = Release|x64
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Release|x64.Build.0 = Release|x64
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Release|x86.ActiveCfg = Release|Win32
+		{1284BFD8-1DD6-4132-9804-8837BC631A65}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1486581B-73B4-44F2-8762-F372D8DE83BC} = {C70AB2B0-A722-406A-99BE-C0D4B8F0D8BE}
+		{D843BAD0-E769-4D4A-98AB-F8322AA8AC2B} = {C70AB2B0-A722-406A-99BE-C0D4B8F0D8BE}
+		{1284BFD8-1DD6-4132-9804-8837BC631A65} = {C70AB2B0-A722-406A-99BE-C0D4B8F0D8BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9ABB9283-38E5-4BB6-B2D2-49BCF452277A}
