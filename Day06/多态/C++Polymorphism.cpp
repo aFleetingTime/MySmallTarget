@@ -31,7 +31,7 @@ public:
 	{
 		return;
 	}
-	void showName()
+	virtual void showName()
 	{
 		cout << "this worker's name is " << name << endl;
 	}
@@ -44,7 +44,7 @@ public:
 	{
 		return;
 	}
-	void showName()
+	virtual void showName()
 	{
 		cout << "this student's name is " << name << endl;
 	}
