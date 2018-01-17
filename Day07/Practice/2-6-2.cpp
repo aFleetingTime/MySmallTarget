@@ -11,7 +11,7 @@ struct Sales_data
 	double revenue = 0;
 	unsigned price = 0;
 };
-
+int sss;
 int main(int argv, char *argc[])
 {
 	if (BOOK_NUMBER % 2 == 0)
