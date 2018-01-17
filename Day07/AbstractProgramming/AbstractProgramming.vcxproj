@@ -19,12 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dog.cpp" />
+    <ClCompile Include="IntelCPU.cpp" />
+    <ClCompile Include="KingstonMemory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainBoard.cpp" />
+    <ClCompile Include="NvidiaDisplayCard.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animal.h" />
-    <ClInclude Include="Dog.h" />
+    <ClInclude Include="IntelCPU.h" />
+    <ClInclude Include="KingstonMemory.h" />
+    <ClInclude Include="MainBoard.h" />
+    <ClInclude Include="NvidiaDisplayCard.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -18,15 +18,30 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Dog.cpp">
+    <ClCompile Include="MainBoard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IntelCPU.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KingstonMemory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NvidiaDisplayCard.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animal.h">
+    <ClInclude Include="MainBoard.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Dog.h">
+    <ClInclude Include="IntelCPU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KingstonMemory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NvidiaDisplayCard.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
