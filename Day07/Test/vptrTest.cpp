@@ -38,10 +38,11 @@ public:
 	{
 		this->c = c;
 	}
-	//void print()
-	//{
-
-	//}
+	void print()
+	{
+		Test2::print();
+		cout << "Test3::c = " << c << endl;
+	}
 private:
 	int c;
 };
@@ -54,7 +55,12 @@ int main()
 	cout << "sizeof(t1) = " << sizeof(t1) << endl;
 	cout << "sizeof(t2) = " << sizeof(t2) << endl;
 	cout << "sizeof(t3) = " << sizeof(t3) << endl;
+	cout << "---------------" << endl;
 
+	Test1 *tp1 = &t3;
+	tp1->print();
+
+	delete t4;
 	system("pause");
 	return 0;
 }
