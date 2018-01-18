@@ -19,9 +19,16 @@ int main(int argv, char *argc[])
 		if(temp <= 100)
 			++ivec[temp / 10];
 	}
-	for (int i : ivec)
+
+	//for (int i : ivec)
+	//{
+	//	cout << i << ' ';
+	//}
+	//cout << endl;
+
+	for (auto beg = ivec.cbegin(); beg != ivec.cend(); ++beg)
 	{
-		cout << i << ' ';
+		cout << *beg << ' ';
 	}
 	cout << endl;
 
