@@ -15,26 +15,15 @@ int main(int argv, char *argc[])
 	clock_t stime = 0;
 	clock_t etime = 0;
 
-	//for (auto beg = vec.begin(), end = vec.end(); beg != end; ++beg)
-	//{
-	//	++(*beg);
-	//	--(*beg);
-	//}
-	//etime = clock();
-	//cout << "Iterator Time:" << etime - stime << endl;
-
-	//~0.10s
+	//~0.05s
 	stime = clock();
-	for (int i = 0; i < COUNT; ++i)
+	for (auto beg = vec.begin(), end = vec.end(); beg != end; ++beg)
 	{
-		++vec[i];
-		//--vec[i];
+		++(*beg);
+		//--(*beg);
 	}
 	etime = clock();
-	cout << "Subscript Time:" << etime - stime << endl;
-	stime = clock();
-
-	
+	cout << "Iterator Time:" << etime - stime << endl;
 
 	system("pause");
 	return 0;
