@@ -9,7 +9,7 @@
 
 using namespace std;
 
-template<class T>
+template<typename T>
 void MySwap(T &a, T &b)
 {
 	T temp = a;
@@ -27,7 +27,7 @@ class Test2 : public Test1
 
 };
 
-template<typename T>
+template<class T>
 void func(T *p)
 {
 	cout << p << endl;
@@ -38,6 +38,10 @@ int main(int argv, char *argc[])
 {
 	int a = 10, b = 20;
 	MySwap<int>(a, b);
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+
+	MySwap(a, b);
 	cout << "a = " << a << endl;
 	cout << "b = " << b << endl;
 
