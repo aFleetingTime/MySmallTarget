@@ -69,6 +69,10 @@ public:
 	{
 		cout << "Square Area = " << width * height << endl;
 	}
+	~Rectangle()
+	{
+		cout << "~Rectangle()" << endl;
+	}
 private:
 	unsigned int width;
 	unsigned int height;
@@ -76,7 +80,10 @@ private:
 
 int main(int argv, char *argc[])
 {
+	//Shape &&a = Rectangle(10,20);
+
 	Shape *shape[] = { new Square(5), new Rectangle(5,10) };
+	vector<Shape> svec;
 	for (auto beg = begin(shape), E = end(shape); beg != E; ++beg)
 	{
 		if (*beg != nullptr)
