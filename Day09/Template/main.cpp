@@ -11,7 +11,7 @@
 using namespace std;
 
 
-int main(int argv, char *argc[])
+int main01(int argv, char *argc[])
 {
 #if 0
 	TemplatePerson<string> person("test", 22, "abc");
