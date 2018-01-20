@@ -33,6 +33,12 @@
     <ClCompile Include="des.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="EncryptProtocol.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EncryptProducer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SocketProtocol.h">
@@ -48,6 +54,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="des.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EncryptProtocol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EncryptProducer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

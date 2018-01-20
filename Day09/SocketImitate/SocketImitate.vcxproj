@@ -144,6 +144,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="des.c" />
+    <ClCompile Include="EncryptProducer.cpp" />
+    <ClCompile Include="EncryptProtocol.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SchemaClass.cpp" />
     <ClCompile Include="SocketProducer.cpp" />
@@ -152,6 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="des.h" />
+    <ClInclude Include="EncryptProducer.h" />
+    <ClInclude Include="EncryptProtocol.h" />
     <ClInclude Include="SchemaClass.h" />
     <ClInclude Include="SocketProducer.h" />
     <ClInclude Include="SocketProducerNew.h" />

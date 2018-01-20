@@ -1,7 +1,5 @@
 #include "SocketProducerNew.h"
 
-
-
 SocketProducerNew::SocketProducerNew(const char *ip, int port)
 {
 	if (ip == nullptr || port < 0)
