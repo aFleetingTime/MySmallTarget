@@ -11,7 +11,7 @@ public:
 		sourcePath = source;
 		targetPath = target;
 	}
-	void copyFile() throw(invalid_argument)
+	void copyFile()
 	{
 		if (sourcePath == nullptr)
 			throw invalid_argument("源文件路径为空!");
@@ -51,7 +51,14 @@ private:
 int main()
 {
 	MyReadWriteFile rwf("F:\\MyC++\\MySmallTarget\\Day11\\Read-Write-File\\TestFile\\source.txt", "F:\\MyC++\\MySmallTarget\\Day11\\Read-Write-File\\TestFile\\target.txt");
-	rwf.copyFile();
+	try
+	{
+		rwf.copyFile();
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
 
 	system("pause");
 	return 0;
