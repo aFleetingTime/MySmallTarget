@@ -22,6 +22,7 @@ template<typename T>
 T fun(T a, T b)
 {
 	return Divition(a, b);
+	
 }
 
 //int Divition(int a, int b)
