@@ -11,7 +11,7 @@ using namespace std;
 
 void push_back(int &&a)
 {
-	cout << *p << endl;
+	cout << &a << endl;
 }
 
 int main(int argv, char *argc[])
