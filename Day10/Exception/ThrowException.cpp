@@ -46,6 +46,7 @@ int main(int argv, char *argc[])
 	catch (exception *e)
 	{
 		cout << e->what() << endl;
+		delete e;
 	}
 
 	system("pause");
