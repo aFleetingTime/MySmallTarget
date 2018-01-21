@@ -11,13 +11,14 @@
 using namespace std;
 
 
-int main01(int argv, char *argc[])
+int main(int argv, char *argc[])
 {
-#if 0
-	TemplatePerson<string> person("test", 22, "abc");
-	person.show();
-#endif
 
+	TemplatePerson<string> person("test", 22, "abc");
+	//person.show();
+	print(person);
+
+#if 0
 	TemplateClassStatic<char> c;
 	TemplateClassStatic<int> i;
 	TemplateClassStatic<double> d;
@@ -37,7 +38,8 @@ int main01(int argv, char *argc[])
 	cout << TemplateClassStatic<char>::a << endl;
 	cout << TemplateClassStatic<int>::a << endl;
 	cout << TemplateClassStatic<double>::a << endl;
-	
+#endif
+
 	system("pause");
 	return 0;
 }

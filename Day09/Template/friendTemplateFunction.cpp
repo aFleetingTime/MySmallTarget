@@ -50,7 +50,7 @@ void printPerson(Person<T> &per)
 }
 
 
-int main(void)
+int main0(void)
 {
 	Person<int> person("test", 20, 11);
 	cout << person << endl;
