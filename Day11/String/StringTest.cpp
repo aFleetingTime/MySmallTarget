@@ -30,6 +30,9 @@ void string_find_test()
 
 	s.erase(3, 3);					//删除字符串，在第一个参数位置开始，删除第二个参数指定个数的字符（调用空参删除全部字符。传入一个参数则从参数位置删除，直至字符串尾部）
 	cout << s << endl;
+
+	transform(s.begin(), s.end(), s.begin(), toupper);
+	cout << s << endl;
 }
 
 int main()
