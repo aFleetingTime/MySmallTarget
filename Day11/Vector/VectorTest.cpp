@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iterator>
 #include <algorithm>
 
 using namespace std;
@@ -20,6 +21,16 @@ public:
 	int age;
 	int id;
 };
+
+template<class T>
+void show(vector<T> &v)
+{
+	for (vector<int>::iterator beg = v.begin(), End = v.end(); beg != End; ++beg)
+	{
+		cout << *beg << ' ';
+	}
+	cout << endl;
+}
 
 void for_each_test()
 {
@@ -78,11 +89,44 @@ void for_each_test_3()
 	});
 }
 
+void vector_test_1()
+{
+	vector<int> v1 = { 10,20,30,40,50,60,70,80,90 };
+	cout << "before assign:" << endl;
+	show(v1);
+	int a[5] = { 1, 2, 3, 4, 5 };
+	v1.assign(begin(a), end(a));
+	cout << "after assign:" << endl;
+	show(v1);
+}
+
+void vector_test_2()
+{
+	vector<int> v1;
+	for (int i = 0; i < 1000; i++)
+	{
+		v1.push_back(i);
+	}
+	cout << "size:" << v1.size() << endl;
+	cout << "capacity:" << v1.capacity() << endl;
+	//cout << v1.at(1000) << endl;	//error
+}
+
+void vector_test_3()
+{
+	vector<int> v1 = { 10,20,30,40,50,60,70,80,90 };
+	v1.erase(v1.begin() + 5, v1.end());
+	show(v1);
+}
+
 int main()
 {
 	//for_each_test();
 	//for_each_test_2();
-	for_each_test_3();
+	//for_each_test_3();
+	//vector_test_1();
+	//vector_test_2();
+	vector_test_3();
 
 	system("pause");
 	return 0;
