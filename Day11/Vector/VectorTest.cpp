@@ -2,6 +2,7 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
+#include <ctime>
 
 using namespace std;
 
@@ -114,9 +115,55 @@ void vector_test_2()
 
 void vector_test_3()
 {
-	vector<int> v1 = { 10,20,30,40,50,60,70,80,90 };
-	v1.erase(v1.begin() + 5, v1.end());
-	show(v1);
+	//vector<int> v1 = { 10,20,30,40,50,60,70,80,90 };
+	//v1.erase(v1.begin() + 5, v1.end());
+	//show(v1);
+	//v1.clear();
+	//show(v1);
+	vector<int> v2(15000, 0);		//生长比例:每当达到最大容量时添加元素则申请（当前空间+当前空间*0.5）容量的新空间
+	v2.push_back(0);
+	//v2.resize(10);
+	//v2.clear();
+	v2.erase(v2.begin() + v2.size() / 2, v2.end());
+	cout << "before swap:" << endl << "size:" << v2.size() << endl << "capacity:" << v2.capacity() << endl;
+	vector<int>(v2).swap(v2);		//成功释放掉多余空间
+	cout << "after swap:" << endl << "size:" << v2.size() << endl << "capacity:" << v2.capacity() << endl;
+}
+
+void printFormat(clock_t time, int size, int capacity)
+{
+	cout << "time:" << time << endl;
+	cout << "size:" << size << endl;
+	cout << "capacity:" << capacity << endl;
+}
+
+void vector_test_a4()
+{
+	vector<int> v1;
+	clock_t s_time = 0, e_time = 0;
+	cout << "使用reserve预留空间:" << endl;
+	s_time = clock();
+	v1.reserve(10000000);
+	for (int i = 0; i < 10000000; ++i)
+	{
+		v1.push_back(i);
+	}
+	e_time = clock();
+	printFormat(e_time - s_time, v1.size(), v1.capacity());
+}
+
+void vector_test_b4()
+{
+	vector<int> v1;
+	clock_t s_time = 0, e_time = 0;
+	cout << "没有使用reserve预留空间:" << endl;
+	s_time = clock();
+	for (int i = 0; i < 10000000; ++i)
+	{
+		v1.push_back(i);
+	}
+	e_time = clock();
+	printFormat(e_time - s_time, v1.size(), v1.capacity());
 }
 
 int main()
@@ -126,7 +173,9 @@ int main()
 	//for_each_test_3();
 	//vector_test_1();
 	//vector_test_2();
-	vector_test_3();
+	//vector_test_3();
+	vector_test_a4();
+	vector_test_b4();
 
 	system("pause");
 	return 0;
