@@ -35,9 +35,24 @@ void string_find_test()
 	cout << s << endl;
 }
 
+void string_toupper(string &str, const char *s)
+{
+	size_t index = 0;
+	string::iterator p;
+	size_t len = strlen(s);
+	while ((index = str.find(s, index)) != string::npos)
+	{
+		p = str.begin() + index;
+		transform(p, p + len, p, toupper);
+	}
+}
+
 int main()
 {
-	string_find_test();
+	//string_find_test();
+	string str("aaa bbbsssaaa aaa cccaaa");
+	string_toupper(str, "aaa");
+	cout << str << endl;
 
 	system("pause");
 	return 0;
