@@ -19,6 +19,8 @@ void set_test_1()
 		cout << setiosflags(ios::right) << setw(7) << "first:" << *equal.first << endl;
 	if (equal.second != iset.end())
 		cout << setiosflags(ios::right) << setw(7) << "second:" << *equal.second << endl;
+
+	
 }
 int main()
 {
