@@ -100,11 +100,15 @@ void ranks(vector<Player> &vPlayer, int num)
 
 int main()
 {
-	vector<Player> player;
-	createPlayer(player, 5);
-	scoring(player, 10);
-	ranks(player, 5);
-
+	//vector<Player> player;
+	//createPlayer(player, 5);
+	//scoring(player, 10);
+	//ranks(player, 5);
+	deque<int> d;
+	d.push_front(1);
+	d.push_front(2);
+	cout << d.front() << endl;
+	d[5];
 	system("pause");
 	return 0;
 }
