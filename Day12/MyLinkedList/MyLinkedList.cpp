@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+
 using namespace std;
 
 template<class T>
@@ -197,7 +198,7 @@ int main()
 	{
 		cout << e.what() << endl;
 	}
-	
+
 	system("pause");
 	return 0;
 }
