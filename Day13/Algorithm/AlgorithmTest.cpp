@@ -96,6 +96,7 @@ void transform_test()
 
 int main()
 {
+	bind2nd(greater<int>(), 10);
 	//adjacent_find_test();
 	//find_if_test();
 	//count_if_test();
