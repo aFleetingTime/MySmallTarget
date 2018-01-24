@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{6C88F798-132C-43DD-97DF-9CC664AADB06}</ProjectGuid>
+    <ProjectGuid>{03C36B00-D203-4ACD-BFEB-7C44089EBA64}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Map</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
@@ -143,11 +143,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EmployeeManagementSystem.cpp" />
-    <ClCompile Include="Map_Employee.cpp" />
+    <ClInclude Include="Map_Employee.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Map_Employee.h" />
+    <ClCompile Include="EmployeeManagementSystem.cpp" />
+    <ClCompile Include="Map_Employee.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
