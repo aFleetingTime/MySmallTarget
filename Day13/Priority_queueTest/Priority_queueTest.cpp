@@ -3,6 +3,7 @@
 #include <queue>
 #include <functional>
 #include <vector>
+#include <iterator>
 
 using namespace std;
 
@@ -54,11 +55,7 @@ void test()
 	replace_if(ivec.begin(), ivec.end(), MyReplace<int>(5), 999);
 	replace(ivec.begin(), ivec.end(), 4, 666);
 	remove_if(ivec.begin(), ivec.end(), MyReplace<int>(9));
-	for (auto a : ivec)
-	{
-		cout << a << " ";
-	}
-	cout << endl;
+	transform(ivec.begin(), ivec.end(), ostream_iterator<int>(cout, " "), bind2nd(multiplies<int>(), 10));
 }
 
 int main()
