@@ -57,8 +57,9 @@ void test()
 
 int main()
 {
-	queue_store_stack();
+	//queue_store_stack();
 	//test();
+	queue<int> a;
 
 	system("pause");
 	return 0;
