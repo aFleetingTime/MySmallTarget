@@ -8,6 +8,11 @@ using namespace std;
 class Test
 {
 public:
+	Test()
+	{
+		mId = 0;
+		mAge = 0;
+	}
 	Test(int id, int age)
 	{
 		mId = id;
@@ -30,6 +35,22 @@ public:
 	bool operator()(const Test &a, const Test &b) const
 	{
 		return a.mId == b.mId && a.mAge == b.mAge;
+	}
+};
+class MyCopy
+{
+public:
+	Test operator()(const Test &t) const
+	{
+		return t;
+	}
+};
+class MyPrint
+{
+public:
+	void operator()(const Test &t) const
+	{
+		cout << "ID:" << t.mId << " Age:" << t.mAge << endl;
 	}
 };
 
@@ -65,11 +86,20 @@ void count_if_test()
 	cout << "Test(3,1)га" << cou << "Иі" << endl;
 }
 
+void transform_test()
+{
+	list<Test> test;
+	test.resize(gList.size());
+	transform(gList.rbegin(), gList.rend(), test.begin(), MyCopy());
+	for_each(test.begin(), test.end(), MyPrint());
+}
+
 int main()
 {
 	//adjacent_find_test();
 	//find_if_test();
-	count_if_test();
+	//count_if_test();
+	transform_test();
 
 	system("pause");
 	return 0;
