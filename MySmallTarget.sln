@@ -95,6 +95,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Map", "Day13\Map\Map.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Functional", "Day13\Functional\Functional.vcxproj", "{BF510E67-B022-4DC8-B1BB-DFD9AE9D5456}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algorithm", "Day13\Algorithm\Algorithm.vcxproj", "{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -407,6 +409,14 @@ Global
 		{BF510E67-B022-4DC8-B1BB-DFD9AE9D5456}.Release|x64.Build.0 = Release|x64
 		{BF510E67-B022-4DC8-B1BB-DFD9AE9D5456}.Release|x86.ActiveCfg = Release|Win32
 		{BF510E67-B022-4DC8-B1BB-DFD9AE9D5456}.Release|x86.Build.0 = Release|Win32
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Debug|x64.ActiveCfg = Debug|x64
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Debug|x64.Build.0 = Debug|x64
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Debug|x86.ActiveCfg = Debug|Win32
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Debug|x86.Build.0 = Debug|Win32
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Release|x64.ActiveCfg = Release|x64
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Release|x64.Build.0 = Release|x64
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Release|x86.ActiveCfg = Release|Win32
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -450,6 +460,7 @@ Global
 		{7FBEEBC2-5D15-497E-895C-4902C0F1E11F} = {E11BA465-A037-4DEB-AD3E-0AD70796062E}
 		{03C36B00-D203-4ACD-BFEB-7C44089EBA64} = {3103C24A-19E2-408D-9CF1-0198BD7E6FC8}
 		{BF510E67-B022-4DC8-B1BB-DFD9AE9D5456} = {3103C24A-19E2-408D-9CF1-0198BD7E6FC8}
+		{FF10D6E1-83A3-41E5-BFAB-93DEF88AB2B4} = {3103C24A-19E2-408D-9CF1-0198BD7E6FC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9ABB9283-38E5-4BB6-B2D2-49BCF452277A}
