@@ -6,6 +6,7 @@
 #include <set>
 #include <list>
 #include <deque>
+#include <ctime>
 //#include <std>
 
 using namespace std;
@@ -22,12 +23,35 @@ public:
 };
 
 template<class T>
+struct Random
+{
+	void operator()(T &vessel, int num)
+	{
+		for (int i = 0; i < num; ++i)
+			vessel.push_back(rand() % 100 + 1);
+	}
+};
+
+template<class T>
 struct MyPrint
 {
+	MyPrint(int num)
+	{
+		this->count = 0;
+		this->mNum = num;
+	}
 	void operator()(T &a)
 	{
+		++count;
 		cout << a << " ";
+		if (mNum == count)
+		{
+			cout << endl;
+			count = 0;
+		}
 	}
+	int count;
+	int mNum;
 };
 
 void test1()
@@ -52,17 +76,43 @@ void test2()
 		s.push_back(i);
 	}
 	//random_shuffle(l.begin(), l.end());	random_shuffle不支持无法随机访问的容器
-	for_each(s.begin(), s.end(), MyPrint<int>());
+	for_each(s.begin(), s.end(), MyPrint<int>(s.size()));
 	cout << endl;
 	random_shuffle(s.begin(), s.end());
-	for_each(s.begin(), s.end(), MyPrint<int>());
+	for_each(s.begin(), s.end(), MyPrint<int>(s.size()));
 	cout << endl;
+}
+
+void test3()
+{
+	vector<int> v1;
+	vector<int> v2;
+
+	Random<vector<int>>()(v1, 10);
+	Random<vector<int>>()(v2, 10);
+
+	cout << "拷贝前:" << endl;
+	for_each(v2.begin(), v2.end(), MyPrint<int>(v2.size()));
+	copy(v1.begin(),v1.end(),v2.begin());
+	cout << "拷贝后:" << endl;
+	for_each(v2.begin(), v2.end(), MyPrint<int>(v2.size()));
+
+	v1.resize(0);
+	Random<vector<int>>()(v1, 10);
+	cout << "交换前:" << endl;
+	for_each(v1.begin(), v1.end(), MyPrint<int>(v1.size()));
+	for_each(v2.begin(), v2.end(), MyPrint<int>(v2.size()));
+	swap(v1, v2);
+	cout << "交换后:" << endl;
+	for_each(v1.begin(), v1.end(), MyPrint<int>(v1.size()));
+	for_each(v2.begin(), v2.end(), MyPrint<int>(v2.size()));
 }
 
 int main()
 {
 	//test1();
-	test2();
+	//test2();
+	test3();
 
 	system("pause");
 	return 0;
