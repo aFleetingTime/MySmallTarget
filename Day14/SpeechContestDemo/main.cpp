@@ -12,6 +12,8 @@ int main()
 	speech.contestantEntry(player);
 	for (int i = 1; i <= 4; i++)
 	{
+		system("pause");
+		cout << "--------------------------" << endl;
 		if(i != 4)
 			cout << "µÚ" << i << "ÂÖ" << endl << "--------------------------" << endl;
 		else
