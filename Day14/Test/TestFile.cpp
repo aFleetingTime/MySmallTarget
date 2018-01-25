@@ -108,11 +108,46 @@ void test3()
 	for_each(v2.begin(), v2.end(), MyPrint<int>(v2.size()));
 }
 
+void test4()
+{
+	vector<int> v1 = { 1,2,3,4,5 };
+	vector<int> v2 = { 4,5,6,7,8,9,10 };
+
+	{
+		//交集
+		vector<int> v3;
+		v3.resize(min(v1.size(), v2.size()) + 5);
+		vector<int>::iterator ret = set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
+		for_each(v3.begin(), ret, MyPrint<int>(ret - v3.begin()));
+	}
+
+	{
+		//并集
+		vector<int> v3;
+		v3.resize(v1.size() + v2.size());
+		vector<int>::iterator ret = set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
+		for_each(v3.begin(), ret, MyPrint<int>(ret - v3.begin()));
+	}
+
+	{
+		//差集
+		vector<int> v3;
+		v3.resize(v1.size());
+		//v1差v2
+		vector<int>::iterator ret = set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
+		for_each(v3.begin(), ret, MyPrint<int>(ret - v3.begin()));
+		//v2差v1
+		ret = set_difference(v2.begin(), v2.end(), v1.begin(), v1.end(), v3.begin());
+		for_each(v3.begin(), ret, MyPrint<int>(ret - v3.begin()));
+	}
+}
+
 int main()
 {
 	//test1();
 	//test2();
-	test3();
+	//test3();
+	test4();
 
 	system("pause");
 	return 0;
