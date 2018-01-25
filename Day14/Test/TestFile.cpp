@@ -142,12 +142,25 @@ void test4()
 	}
 }
 
+void test5()
+{
+	//"初始化"容器
+	vector<int> v1;
+	Random<vector<int>>()(v1, 10);
+	cout << "fill前:" << endl;
+	for_each(v1.begin(), v1.end(), MyPrint<int>(v1.size()));
+	cout << "fill后:" << endl;
+	fill(v1.begin(), v1.end(), 100);
+	for_each(v1.begin(), v1.end(), MyPrint<int>(v1.size()));
+}
+
 int main()
 {
 	//test1();
 	//test2();
 	//test3();
-	test4();
+	//test4();
+	test5();
 
 	system("pause");
 	return 0;
