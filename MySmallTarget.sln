@@ -109,6 +109,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Demo", "Day14\Demo\Demo.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenClosedPrinciple", "Day14\OpenClosedPrinciple\OpenClosedPrinciple.vcxproj", "{1E19EE39-8FA2-4919-A639-A950A564AD77}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LawOfDemeter", "Day14\LawOfDemeter\LawOfDemeter.vcxproj", "{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -469,6 +471,14 @@ Global
 		{1E19EE39-8FA2-4919-A639-A950A564AD77}.Release|x64.Build.0 = Release|x64
 		{1E19EE39-8FA2-4919-A639-A950A564AD77}.Release|x86.ActiveCfg = Release|Win32
 		{1E19EE39-8FA2-4919-A639-A950A564AD77}.Release|x86.Build.0 = Release|Win32
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Debug|x64.ActiveCfg = Debug|x64
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Debug|x64.Build.0 = Debug|x64
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Debug|x86.ActiveCfg = Debug|Win32
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Debug|x86.Build.0 = Debug|Win32
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Release|x64.ActiveCfg = Release|x64
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Release|x64.Build.0 = Release|x64
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Release|x86.ActiveCfg = Release|Win32
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -518,6 +528,7 @@ Global
 		{77CE28EE-A2CF-45E6-944D-BE2C0853CD08} = {38E446CA-22AF-4F29-AADD-4B5125D03CA1}
 		{AF8DDE48-1046-431E-90F8-F9C93F9FDA41} = {38E446CA-22AF-4F29-AADD-4B5125D03CA1}
 		{1E19EE39-8FA2-4919-A639-A950A564AD77} = {38E446CA-22AF-4F29-AADD-4B5125D03CA1}
+		{73D4CE50-75C2-4E36-9497-1CF496AFF5EA} = {38E446CA-22AF-4F29-AADD-4B5125D03CA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9ABB9283-38E5-4BB6-B2D2-49BCF452277A}
