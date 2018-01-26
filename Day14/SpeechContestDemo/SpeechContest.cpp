@@ -111,6 +111,7 @@ void SpeechContest::JudgeGrading(pair<MyMapIterator, MyMapIterator> p, int judge
 	{
 		for (int i = 0; i != judgetNum; ++i)
 			score.push_back(rand() % 91 + 10);
+		sort(score.begin(), score.end());
 		score.pop_back();
 		score.pop_front();
 		p.first->second.mScore = accumulate(score.begin(), score.end(), 0) / score.size();
