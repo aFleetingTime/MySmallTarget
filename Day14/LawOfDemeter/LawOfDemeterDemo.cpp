@@ -107,7 +107,7 @@ public:
 	{
 		for (AbstractBuilding *bui : building)
 		{
-			if (bui->getQuality() == quality)
+			if (!bui->getQuality().compare(quality))
 			{
 				return bui;
 			}
