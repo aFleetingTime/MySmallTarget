@@ -61,16 +61,18 @@ int main()
 {
 	try
 	{
-		MySocket client(MAKEWORD(1, 1), 6666);
+		MySocket socket(MAKEWORD(1, 1), 6666);
 		string data;
 
 		while (true)
 		{
-			client.socketInit();
+			socket.socketInit();
 			cout << "·¢ËÍÄÚÈÝ:" << endl;
 			cin >> data;
-			client.socketSend(data);
-			string ret = client.socketRecv();
+			if (!data.compare("over"))
+				break;
+			socket.socketSend(data);
+			string ret = socket.socketRecv();
 			cout << ret << endl;
 		}
 		WSACleanup();
