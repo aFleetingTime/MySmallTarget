@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FactoryMethodDemo.cpp">
+    <ClCompile Include="Temp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Temp2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

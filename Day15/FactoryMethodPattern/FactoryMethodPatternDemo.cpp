@@ -3,67 +3,84 @@
 
 using namespace std;
 
-class Fruit
+void test()
 {
-public:
-	virtual void show() = 0;
-};
-
-class Apple : public Fruit
-{
-public:
-	friend class Factory;
-	virtual void show()
+	class Fruit
 	{
-		cout << "Æ»¹û" << endl;
-	}
+	public:
+		virtual void show() = 0;
+	};
 
-private:
-	Apple() {};
-};
-
-class Banana : public Fruit
-{
-public:
-	friend class Factory;
-	virtual void show()
+	class Apple : public Fruit
 	{
-		cout << "Ïã½¶" << endl;
-	}
+	public:
+		friend class Factory;
+		virtual void show()
+		{
+			cout << "Æ»¹û" << endl;
+		}
 
-private:
-	Banana() {};
-};
+	private:
+		Apple() {};
+	};
 
-class Factory
-{
-public:
-	friend class Apple;
-	Fruit* createObject(string objName)
+	class Banana : public Fruit
 	{
-		if (!objName.compare("Apple"))
-			return new Apple;
-		else if (!objName.compare("Banana"))
-			return new Banana;
-		else
-			return nullptr;
-	}
-};
+	public:
+		friend class Factory;
+		virtual void show()
+		{
+			cout << "Ïã½¶" << endl;
+		}
 
+	private:
+		Banana() {};
+	};
+
+	class Factory
+	{
+	public:
+		friend class Apple;
+		Fruit* createObject(string objName)
+		{
+			if (!objName.compare("Apple"))
+				return new Apple;
+			else if (!objName.compare("Banana"))
+				return new Banana;
+			else
+				return nullptr;
+		}
+	};
+	{
+		Factory factory;
+		Apple *apple = reinterpret_cast<Apple*>(factory.createObject("Apple"));
+		if (apple != nullptr)
+		{
+			apple->show();
+			delete apple;
+		}
+		Fruit *banana = factory.createObject("Banana");
+		if (banana != nullptr)
+		{
+			banana->show();
+			delete banana;
+		}
+	}
 #if 0
-template<class T>
-class NewFactory
-{
-public:
-	Fruit* createObject()
+	template<class T>
+	class NewFactory
 	{
-		return new T;
-	}
-};
+	public:
+		Fruit * createObject()
+		{
+			return new T;
+		}
+	};
 #endif
-
+}
 int main()
 {
+#if 0
 	Factory factory;
 	Apple *apple = reinterpret_cast<Apple*>(factory.createObject("Apple"));
 	if (apple != nullptr)
@@ -77,6 +94,8 @@ int main()
 		banana->show();
 		delete banana;
 	}
+#endif
+	test();
 
 	system("pause");
 	return 0;

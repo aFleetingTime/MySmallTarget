@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -76,6 +77,19 @@ Fruit* createFruitObject(FruitFactory *factory)
 	delete factory;
 	return temp;
 }
+void test1()
+{
+
+
+		int num = 0;
+		vector<int> ivec;
+		cin >> num;
+		switch (num)
+		{
+		case num>100:
+		}
+		return 0;
+}
 
 int main()
 {
@@ -91,6 +105,7 @@ int main()
 		banana->show();
 		delete banana;
 	}
+	cout << "Test" << endl;
 
 	system("pause");
 	return 0;
