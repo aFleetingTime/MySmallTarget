@@ -86,8 +86,14 @@ int main()
 	Singleton1 *s1 = Singleton1::getInstance();
 	s1->show();
 
+	if (s1 == Singleton1::getInstance())
+		cout << "单利" << endl;
+
 	Singleton2 *s2 = Singleton2::getInstance();
 	s2->show();
+
+	if (s2 == Singleton2::getInstance())
+		cout << "单利" << endl;
 
 	cout << "-------------" << endl;
 
