@@ -8,11 +8,16 @@ class Fruit
 public:
 	virtual void show() = 0;
 };
+class FruitFactory
+{
+public:
+	virtual Fruit* createObject() = 0;
+};
 
 class Apple : public Fruit
 {
 public:
-	friend class Factory;
+	friend class AppleFactory;
 	virtual void show()
 	{
 		cout << "Æ»¹û" << endl;
@@ -25,7 +30,7 @@ private:
 class Banana : public Fruit
 {
 public:
-	friend class Factory;
+	friend class BananaFactory;
 	virtual void show()
 	{
 		cout << "Ïã½¶" << endl;
@@ -35,18 +40,21 @@ private:
 	Banana() {};
 };
 
-class Factory
+class AppleFactory : public FruitFactory
 {
 public:
-	friend class Apple;
-	Fruit* createObject(string objName)
+	virtual Fruit* createObject()
 	{
-		if (!objName.compare("Apple"))
-			return new Apple;
-		else if (!objName.compare("Banana"))
-			return new Banana;
-		else
-			return nullptr;
+		return new Apple;
+	}
+};
+
+class BananaFactory : public FruitFactory
+{
+public:
+	virtual Fruit* createObject()
+	{
+		return new Banana;
 	}
 };
 
@@ -55,23 +63,29 @@ template<class T>
 class NewFactory
 {
 public:
-	Fruit* createObject()
+	Fruit * createObject()
 	{
 		return new T;
 	}
 };
 #endif
 
+Fruit* createFruitObject(FruitFactory *factory)
+{
+	Fruit *temp = factory->createObject();
+	delete factory;
+	return temp;
+}
+
 int main()
 {
-	Factory factory;
-	Apple *apple = reinterpret_cast<Apple*>(factory.createObject("Apple"));
+	Apple *apple = reinterpret_cast<Apple*>(createFruitObject(new AppleFactory));
 	if (apple != nullptr)
 	{
 		apple->show();
 		delete apple;
 	}
-	Fruit *banana = factory.createObject("Banana");
+	Fruit *banana = createFruitObject(new BananaFactory);
 	if (banana != nullptr)
 	{
 		banana->show();
@@ -81,4 +95,3 @@ int main()
 	system("pause");
 	return 0;
 }
-
