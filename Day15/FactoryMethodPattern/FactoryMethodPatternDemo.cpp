@@ -12,30 +12,34 @@ public:
 class Apple : public Fruit
 {
 public:
+	friend class Factory;
 	virtual void show()
 	{
 		cout << "Æ»¹û" << endl;
 	}
 
 private:
-	const string mName;
+	Apple() {};
 };
 
 class Banana : public Fruit
 {
 public:
+	friend class Factory;
 	virtual void show()
 	{
 		cout << "Ïã½¶" << endl;
 	}
+	friend Factory;
 
 private:
-	const string mName;
+	Banana() {};
 };
 
 class Factory
 {
 public:
+	friend class Apple;
 	Fruit* createObject(string objName)
 	{
 		if (!objName.compare("Apple"))
@@ -47,6 +51,7 @@ public:
 	}
 };
 
+#if 0
 template<class T>
 class NewFactory
 {
@@ -56,6 +61,7 @@ public:
 		return new T;
 	}
 };
+#endif
 
 int main()
 {
@@ -71,13 +77,6 @@ int main()
 	{
 		banana->show();
 		delete banana;
-	}
-
-	Fruit *nApple = NewFactory<Apple>().createObject();
-	if (nApple != nullptr)
-	{
-		nApple->show();
-		delete nApple;
 	}
 
 	system("pause");
