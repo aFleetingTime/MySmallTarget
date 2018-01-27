@@ -83,7 +83,7 @@ string link(int num, int *arr)
 	}
 	return str;
 }
-int main1()
+int main3()
 {
 	int num = 0;
 	int arr[1024];

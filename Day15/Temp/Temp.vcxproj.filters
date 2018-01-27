@@ -21,5 +21,8 @@
     <ClCompile Include="Temp2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Temp3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
