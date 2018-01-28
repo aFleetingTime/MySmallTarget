@@ -18,6 +18,7 @@ public:
 	virtual string getName() = 0;
 	virtual unsigned getAd() = 0;
 	virtual bool isLive() = 0;
+	virtual ~AbstractHero() {}
 };
 
 class AbstractBoss
@@ -31,6 +32,7 @@ public:
 	virtual string getName() = 0;
 	virtual bool isLive() = 0;
 	virtual bool isTarget() = 0;
+	virtual list<AbstractHero*>& getList() = 0;
 };
 
 class BlueHero : public AbstractHero
@@ -57,7 +59,10 @@ public:
 	virtual void attackBoss()
 	{
 		if (pTarget == nullptr)
+		{
 			cout << mName << "没有指定攻击目标" << endl;
+			return;
+		}
 		cout << mName << "对" << pTarget->getName() << "造成" << mAd << "点伤害" << endl;
 		pTarget->bruise(this);
 	}
@@ -119,7 +124,10 @@ public:
 	virtual void attackBoss()
 	{
 		if (pTarget == nullptr)
+		{
 			cout << mName << "没有指定攻击目标" << endl;
+			return;
+		}
 		cout << mName << "对" << pTarget->getName() << "造成" << mAd << "点伤害" << endl;
 		pTarget->bruise(this);
 	}
@@ -199,7 +207,7 @@ public:
 	{
 		if (!heroList.size())
 		{
-			cout << "全部英雄阵亡" << endl;
+			cout << "没有可攻击的目标" << endl;
 			return;
 		}
 		else if (blood <= 0)
@@ -208,6 +216,7 @@ public:
 		cout << mName << "对" << targetHero->getName() << "造成" << mAd << "点伤害" << endl;
 		if (targetHero->bruise(mAd))
 		{
+			delete heroList.front();
 			heroList.pop_front();
 		}
 	}
@@ -223,7 +232,10 @@ public:
 	{
 		return heroList.size();
 	}
-
+	virtual list<AbstractHero*>& getList()
+	{
+		return heroList;
+	}
 
 private:
 	int blood;
@@ -232,7 +244,7 @@ private:
 	string mName;
 };
 
-#define RANDOM rand() % 200 + 100
+#define RANDOM rand() % 30 + 10
 #define RANDOM_HERO rand() % 5
 
 void test()
@@ -257,37 +269,31 @@ void test()
 		red.back()->setTarget(boss);
 		boss->addHero(hero);
 	}
-	int count = 0;
-	while (boss->isLive() && count != 10)
+	list<AbstractHero*> &mlist = boss->getList();
+	while (boss->isLive())
 	{
-		count = 0;
-		if (blue.at(RANDOM_HERO)->isLive())
+		for (list<AbstractHero*>::iterator beg = mlist.begin(), End = mlist.end(); beg != End && boss->isLive(); ++beg)
 		{
-			blue.at(RANDOM_HERO)->attackBoss();
-			cout << "--------------" << endl;
+			if ((*beg)->isLive())
+			{
+				(*beg)->attackBoss();
+				cout << "----------------------------" << endl;
+			}
 		}
-		else
-		{
-			++count;
-		}
-
-		if (red.at(RANDOM_HERO)->isLive())
-		{
-			red.at(RANDOM_HERO)->attackBoss();
-			cout << "--------------" << endl;
-		}
-		else
-		{
-			++count;
-		}
-
-		if (boss->isTarget())
+		if (boss->isTarget() && boss->isLive())
 		{
 			boss->attack();
-			cout << "--------------" << endl;
+			cout << "----------------------------" << endl;
+		}
+		if (!mlist.size())
+		{
+			cout << "全部英雄阵亡" << endl;
+			cout << "----------------------------" << endl;
+			break;
 		}
 	}
-	
+	cout << "存活英雄:" << mlist.size() << endl;
+	cout << "----------------------------" << endl;
 }
 
 int main()
