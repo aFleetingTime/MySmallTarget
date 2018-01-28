@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main()
+int main6()
 {
 	int count = 0;
 	class a { public: bool operator()(string a, string b) { return a + b > b + a; } };
