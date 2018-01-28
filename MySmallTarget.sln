@@ -139,6 +139,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StrategyPattern", "Day16\St
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObserverPattern", "Day16\ObserverPattern\ObserverPattern.vcxproj", "{428C9AF0-1793-4F3E-8AFC-65D23F0C4B15}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DecoratorPattern", "Day16\DecoratorPattern\DecoratorPattern.vcxproj", "{629E205A-1B32-4235-8CFE-335EF9470531}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -603,6 +605,14 @@ Global
 		{428C9AF0-1793-4F3E-8AFC-65D23F0C4B15}.Release|x64.Build.0 = Release|x64
 		{428C9AF0-1793-4F3E-8AFC-65D23F0C4B15}.Release|x86.ActiveCfg = Release|Win32
 		{428C9AF0-1793-4F3E-8AFC-65D23F0C4B15}.Release|x86.Build.0 = Release|Win32
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Debug|x64.ActiveCfg = Debug|x64
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Debug|x64.Build.0 = Debug|x64
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Debug|x86.ActiveCfg = Debug|Win32
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Debug|x86.Build.0 = Debug|Win32
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Release|x64.ActiveCfg = Release|x64
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Release|x64.Build.0 = Release|x64
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Release|x86.ActiveCfg = Release|Win32
+		{629E205A-1B32-4235-8CFE-335EF9470531}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -665,6 +675,7 @@ Global
 		{77C5FF2C-B142-4327-83D2-C4C1D14E4312} = {6EB38D18-38A2-478C-941D-7AA00D961C3C}
 		{2981F008-34B8-41A3-AD9C-98DFA236FEB5} = {6EB38D18-38A2-478C-941D-7AA00D961C3C}
 		{428C9AF0-1793-4F3E-8AFC-65D23F0C4B15} = {6EB38D18-38A2-478C-941D-7AA00D961C3C}
+		{629E205A-1B32-4235-8CFE-335EF9470531} = {6EB38D18-38A2-478C-941D-7AA00D961C3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9ABB9283-38E5-4BB6-B2D2-49BCF452277A}
