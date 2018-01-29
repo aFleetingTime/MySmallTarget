@@ -1,7 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
+
+class Compare
+{
+public:
+	Compare(int num) : mNum(num) {}
+	bool operator()(vector<int> v1, vector<int> v2) const
+	{
+		if (binary_search(v1.begin(), v1.end(), mNum)) 
+			return true;
+		return v1[0] > mNum ? false : true;
+	}
+	int mNum;
+};
 
 class Solution {
 public:
@@ -17,13 +31,22 @@ public:
 		return false;
 	}
 };
-
+	bool com(vector<int> a, vector<int> c)
+	{
+		return true;
+	}
 int main()
 {
-	vector<int> v(10);
+	vector<vector<int>> v = {
+		{1,2,3,4,5},
+		{6,7,8,9,10},
+		{11,12,13,14,15},
+	};
 
-	cout << v.end() - v.begin() << endl;
-
+	//cout << (v.end() >= v.begin()) << endl;
+	//auto End = v[0].begin();
+	//if (find(v[1].begin(), v[1].end(), 10) != End)
+	cout << binary_search(v.begin(), v.end(), *v.rbegin(),Compare(16));
 	system("pause");
 	return 0;
 }
