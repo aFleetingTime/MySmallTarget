@@ -6,9 +6,27 @@ using namespace std;
 class House
 {
 public:
+	virtual void setWindow(string window) = 0;
+	virtual void setWall(string wall) = 0;
+	virtual void setFloor(string floor) = 0;
+	virtual void setDoor(string door) = 0;
+	virtual void showHouse() = 0;
+
+protected:
+	string mWindow;
+	string mWall;
+	string mFloor;
+	string mDoor;
+	string mType;
+};
+
+class CommonHouse : public House
+{
+public:
 	void setWindow(string window)
 	{
 		mWindow = window;
+		mType = "普通房";
 	}
 	void setWall(string wall)
 	{
@@ -24,6 +42,37 @@ public:
 	}
 	void showHouse()
 	{
+		cout << mType << endl;
+		cout << mWindow << endl;
+		cout << mWall << endl;
+		cout << mFloor << endl;
+		cout << mDoor << endl;
+	}
+};
+
+class LuxuryHouse : public House
+{
+public:
+	void setWindow(string window)
+	{
+		mWindow = window;
+		mType = "豪华房";
+	}
+	void setWall(string wall)
+	{
+		mWall = wall;
+	}
+	void setFloor(string floor)
+	{
+		mFloor = floor;
+	}
+	void setDoor(string door)
+	{
+		mDoor = door;
+	}
+	void showHouse()
+	{
+		cout << mType << endl;
 		cout << mWindow << endl;
 		cout << mWall << endl;
 		cout << mFloor << endl;
@@ -35,6 +84,7 @@ private:
 	string mWall;
 	string mFloor;
 	string mDoor;
+	
 };
 
 class Builder
@@ -109,10 +159,17 @@ public:
 class Director
 {
 public:
-	Director(Builder *builder)
-	{
-		mBuilder = builder;
-	}
+	Director(Builder *b) : mBuilder(b) {}
+	virtual House* createHouse() = 0;
+
+protected:
+	Builder * mBuilder;
+};
+
+class CommonDirector : public Director
+{
+public:
+	CommonDirector(Builder *builder) : Director(builder) {}
 	House* createHouse()
 	{
 		mBuilder->createDoor();
@@ -121,16 +178,27 @@ public:
 		mBuilder->createWindow();
 		return mBuilder->getHouse();
 	}
+};
 
-private:
-	Builder *mBuilder;
+class LuxuryDirector : public Director
+{
+public:
+	LuxuryDirector(Builder *builder) : Director(builder) {}
+	House* createHouse()
+	{
+		mBuilder->createWindow();
+		mBuilder->createFloor();
+		mBuilder->createDoor();
+		mBuilder->createWall();
+		return mBuilder->getHouse();
+	}
 };
 
 int main()
 {
-	House *house = new House();
+	House *house = new CommonHouse();
 	Builder *builder = new BuilderA(house);
-	Director *director = new Director(builder);
+	Director *director = new CommonDirector(builder);
 
 	cout << "-------BuilderA-------" << endl;
 
@@ -139,11 +207,13 @@ int main()
 
 	delete director;
 	delete builder;
+	delete house;
 
 	cout << "-------BuilderB-------" << endl;
 
+	house = new LuxuryHouse;
 	builder = new BuilderB(house);
-	director = new Director(builder);
+	director = new LuxuryDirector(builder);
 
 	director->createHouse();
 	house->showHouse();
