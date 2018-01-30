@@ -55,6 +55,10 @@ int main()
 	a.print_list();
 	cout << endl;
 
+	cout << "·ÃÎÊÔªËØ:" << endl;
+	cout << a[16] << endl;
+	cout << endl;
+
 	system("pause");
 	return 0;
 }

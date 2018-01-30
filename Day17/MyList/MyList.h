@@ -168,7 +168,15 @@ public:
 		}
 	}
 
-	
+	TYPE& operator[](sizeType pos)
+	{
+		if (mSize <= pos)
+			throw exception("访问元素越界!");
+		Node *pCur = mHead->next;
+		for (sizeType i = 0; i < pos; ++i)
+			pCur = pCur->next;
+		return pCur->data;
+	}
 
 
 private:
