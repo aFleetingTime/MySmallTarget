@@ -5,18 +5,18 @@
 
 using namespace std;
 
-class A
+void test2(int a)
 {
-public:
-	A(int a)
-	{
-
-	}
-};
-
+	cout << "test2" << endl;
+}
+void test1()
+{
+	cout << "test1" << endl;
+}
 int main()
 {
-
+	void(*d)(void) = (void(*)(void))test2;
+	d();
 	int a = 0;
 	int *p = &a + 5;
 	int *s = p + 10;
