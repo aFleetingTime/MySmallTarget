@@ -56,7 +56,7 @@ int main()
 	cout << endl;
 
 	cout << "·ÃÎÊÔªËØ:" << endl;
-	cout << a[16] << endl;
+	cout << a[15] << endl;
 	cout << endl;
 
 	system("pause");
