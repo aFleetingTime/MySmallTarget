@@ -1,5 +1,4 @@
 #include "CLinkList.h"
-#include <new>
 
 typedef struct Person
 {
@@ -51,8 +50,15 @@ int main()
 
 	print_link(list, print_fun);
 
-	
+	printf("---------------\n");
+	printf("size:%d\n", size_link(list));
 
+	printf("---------------\n");
+	erase_pos_link(list, 0);
+	print_link(list, print_fun);
+
+	printf("---------------\n");
+	printf("size:%d\n", size_link(list));
 
 	free_link(list);
 

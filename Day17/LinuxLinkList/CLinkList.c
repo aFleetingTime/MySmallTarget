@@ -2,7 +2,7 @@
 
 LinkList* init_link()
 {
-	LinkList *list = (LinkList*)malloc(sizeof(LinkList));
+	LinkList *list = malloc(sizeof(LinkList));
 	list->head.next = NULL;
 	list->size = 0;
 	return list;
@@ -10,13 +10,14 @@ LinkList* init_link()
 
 void insert_link(LinkList *list, size_t pos, LinkNode *value)
 {
-	LinkNode *p = (LinkNode*)(&list->head);
+	LinkNode *p = &list->head;
 	for (size_t i = 0; i < pos; ++i)
 	{
 		p = p->next;
 	}
 	value->next = p->next;
 	p->next = value;
+	++list->size;
 }
 
 int find_link(LinkList *list, LinkNode *value)
@@ -35,26 +36,27 @@ int find_link(LinkList *list, LinkNode *value)
 
 void erase_pos_link(LinkList *list, size_t pos)
 {
-	LinkNode *node = (LinkNode*)(&list->head);
+	LinkNode *node = &list->head;
 	//LinkNode *node = list->head.next;
 	for (size_t i = 0; i < pos; ++i)
 	{
 		node = node->next;
 	}
 	LinkNode *temp = node->next->next;
-	//free(node->next);
 	node->next = temp;
+	--list->size;
 }
 
 void erase_value_link(LinkList *list, LinkNode *value)
 {
-	LinkNode *node = (LinkNode*)(&list->head);
+	LinkNode *node = &list->head;
 	while (node != NULL)
 	{
 		if (node->next == value)
 			node->next = node->next->next;
 		node = node->next;
 	}
+	--list->size;
 }
 
 LinkNode* at_link(LinkList *list, size_t pos)
@@ -82,8 +84,6 @@ void free_link(LinkList *list)
 	//	node = temp;
 	//}
 	free(list);
-	list->head.next = NULL;
-	list->size = 0;
 }
 
 void print_link(LinkList *list, PrintType print_fun)
