@@ -49,7 +49,7 @@ void erase_pos_link(LinkList *list, size_t pos)
 void erase_value_link(LinkList *list, LinkNode *value)
 {
 	LinkNode *node = (LinkNode*)(&list->head);
-	while (node->next != NULL)
+	while (node != NULL)
 	{
 		if (node->next == value)
 			node->next = node->next->next;

@@ -31,6 +31,11 @@ int main()
 
 	print_link(list, print_fun);
 
+	printf("---------------\n");
+
+	Person *per = ((Person*)at_link(list, 4));
+	printf("ĞÕÃû:%s ÄêÁä:%d\n", per->name, per->age);
+
 	erase_pos_link(list, 3);
 
 	printf("---------------\n");
@@ -44,6 +49,8 @@ int main()
 	printf("---------------\n");
 
 	print_link(list, print_fun);
+
+	
 
 
 	free_link(list);
