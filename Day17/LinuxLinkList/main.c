@@ -1,4 +1,5 @@
 #include "CLinkList.h"
+#include <new>
 
 typedef struct Person
 {
