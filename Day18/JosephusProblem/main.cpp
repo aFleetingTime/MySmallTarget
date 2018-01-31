@@ -1,13 +1,5 @@
 #include "CircularLinkedList.h"
 
-struct a
-{
-	~a()
-	{
-
-	}
-};
-
 int main()
 {
 	CircularLinkedList<int> clist;
