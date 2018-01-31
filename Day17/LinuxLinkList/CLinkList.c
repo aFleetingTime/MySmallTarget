@@ -95,3 +95,15 @@ void print_link(LinkList *list, PrintType print_fun)
 		node = node->next;
 	}
 }
+
+LinkNode* find_value_link(LinkList *list, Compare com, void *value)
+{
+	LinkNode *node = list->head.next;
+	while (node != NULL)
+	{
+		if (com(node, value))
+			return node;
+		node = node->next;
+	}
+	return NULL;
+}

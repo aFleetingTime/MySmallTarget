@@ -15,12 +15,15 @@ typedef struct LINKLIST
 }LinkList;
 
 typedef void(*PrintType)(LinkNode*);
+typedef char(*Compare)(LinkNode*, void*);
 
 LinkList* init_link();
 
 void insert_link(LinkList *list, size_t pos, LinkNode *value);
 
 int find_link(LinkList *list, LinkNode *value);
+
+LinkNode* find_value_link(LinkList *list, Compare com, void *value);
 
 void erase_pos_link(LinkList *list, size_t pos);
 

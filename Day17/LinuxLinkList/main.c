@@ -13,6 +13,12 @@ void print_fun(LinkNode *node)
 	printf("姓名:%s 年龄:%d\n", temp->name, temp->age);
 }
 
+int target = 0;
+char compare(LinkNode *node, void *value)
+{
+	return ((Person*)node)->age == *(int*)(value);
+}
+
 int main()
 {
 	Person p[5] = 
@@ -37,6 +43,14 @@ int main()
 	printf("姓名:%s 年龄:%d\n", per->name, per->age);
 
 	erase_pos_link(list, 3);
+
+	printf("---------------\n查找:\n");
+	int *a = malloc(sizeof(int));
+	*a = 3;
+	per = (Person*)find_value_link(list, compare, a);
+	free(a);
+	if(per != NULL)
+		printf("姓名:%s 年龄:%d\n", per->name, per->age);
 
 	printf("---------------\n");
 
