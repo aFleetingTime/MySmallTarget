@@ -16,7 +16,7 @@ void print_fun(LinkNode *node)
 int target = 0;
 char compare(LinkNode *node, void *value)
 {
-	return ((Person*)node)->age == *(int*)(value);
+	return ((Person*)node)->age == ((Person*)value)->age && !strcmp(((Person*)node)->name, ((Person*)value)->name);
 }
 
 int main()
@@ -24,16 +24,16 @@ int main()
 	Person p[5] = 
 	{
 		{ NULL, "person1", 1 },
-		{ NULL,"person2", 2 },
-		{ NULL,"person3", 3 },
-		{ NULL,"person4", 4 },
-		{ NULL,"person5", 5 }
+		{ NULL, "person2", 2 },
+		{ NULL, "person3", 3 },
+		{ NULL, "person4", 4 },
+		{ NULL, "person5", 5 }
 	};
 
 	LinkList *list = init_link();
 
 	for (int i = 0; i < 5; ++i)
-		insert_link(list, 0, (LinkNode*)(&p[i]));
+		insert_link(list, size_link(list), (LinkNode*)(&p[i]));
 
 	print_link(list, print_fun);
 
@@ -42,13 +42,12 @@ int main()
 	Person *per = ((Person*)at_link(list, 4));
 	printf("姓名:%s 年龄:%d\n", per->name, per->age);
 
+	printf("---------------\n");
 	erase_pos_link(list, 3);
+	print_link(list, print_fun);
 
 	printf("---------------\n查找:\n");
-	int *a = malloc(sizeof(int));
-	*a = 3;
-	per = (Person*)find_value_link(list, compare, a);
-	free(a);
+	per = (Person*)find_value_link(list, compare, &p[2]);
 	if(per != NULL)
 		printf("姓名:%s 年龄:%d\n", per->name, per->age);
 
