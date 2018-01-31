@@ -1,3 +1,6 @@
+#ifndef _CLINKLIST_H
+#define _CLINKLIST_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -37,3 +40,4 @@ void free_link(LinkList *list);
 
 void print_link(LinkList *list, PrintType print_fun);
 
+#endif
