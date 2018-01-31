@@ -3,7 +3,7 @@
 using sizeType = unsigned int;
 
 template<class TYPE> class MyLink;
-template<class TYPE> class Node;
+template<class TYPE> struct Node;
 
 template<class TYPE>
 class MyLink
