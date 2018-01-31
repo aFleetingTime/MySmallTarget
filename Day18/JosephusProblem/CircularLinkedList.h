@@ -96,7 +96,7 @@ public:
 		cout << "Ïú»ÙË³Ðò";
 		while (mSize != 0)
 		{
-			for (int i = 0; i < n; ++i)
+			for (int i = 1; i < n; ++i)
 			{
 				cur = cur->next;
 				if (cur == mRear || cur == &mHead)
@@ -105,9 +105,11 @@ public:
 			cout << " -> " << cur->data;
 			cur->last->next = cur->next;
 			cur->next->last = cur->last;
-			LinkNode *temp = cur->last;
+			LinkNode *temp = cur->next;
 			delete cur;
 			cur = temp;
+			if (cur == mRear || cur == &mHead)
+				cur = mHead.next;
 			--mSize;
 		}
 	}
