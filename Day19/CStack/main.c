@@ -16,6 +16,12 @@ typedef struct Char
 	int index;
 }Char;
 
+typedef struct Int
+{
+	Node node;
+	int num;
+}Int;
+
 
 int isOperator(char ch)
 {
@@ -124,7 +130,7 @@ void transform(char *str)
 				free(ch);
 				ch = (Char*)top_stack(stack);
 			}
-			if (isLeftBracket(ch->ch))
+			if (ch != NULL && isLeftBracket(ch->ch))
 			{
 				pop_stack(stack);
 				free(ch);
@@ -139,7 +145,7 @@ void transform(char *str)
 			else
 			{
 				Char *ch = (Char*)top_stack(stack);
-				if (getPriority(*temp) > getPriority(ch->ch))
+				if (getPriority(*temp) >= getPriority(ch->ch))
 				{
 					push_stack(stack, (Node*)createChar(*temp, index));
 				}
@@ -148,7 +154,10 @@ void transform(char *str)
 					while (!empty_stack(stack))
 					{
 						ch = (Char*)top_stack(stack);
-						printf("%c ", ch->ch);
+						if (!isLeftBracket(ch->ch))
+						{
+							printf("%c ", ch->ch);
+						}
 						if (getPriority(*temp) > getPriority(ch->ch))
 						{
 							push_stack(stack, (Node*)createChar(*temp, index));
@@ -175,13 +184,67 @@ void transform(char *str)
 	free_value_stack(&stack);
 }
 
+Int* make_int(int num)
+{
+	Int *temp = (Int*)malloc(sizeof(Int));
+	temp->num = num;
+	return temp;
+}
+
+int toNumber(char *str)
+{
+	char *temp = str;
+	Stack *stack = init_stack();
+	while (*temp != '\0')
+	{
+		if (isalnum(*temp))
+		{
+			push_stack(stack, (Node*)make_int(*temp - '0'));
+		}
+		else if (isOperator(*temp))
+		{
+			Int *a = (Int*)top_stack(stack);
+			pop_stack(stack);
+			Int *b = (Int*)top_stack(stack);
+			pop_stack(stack);
+			switch (*temp)
+			{
+			case '+':
+				push_stack(stack, (Node*)make_int(b->num + a->num));
+				goto FREE;
+			case '-':
+				push_stack(stack, (Node*)make_int(b->num - a->num));
+				goto FREE;
+			case '*':
+				push_stack(stack, (Node*)make_int(b->num * a->num));
+				goto FREE;
+			case '/':
+				push_stack(stack, (Node*)make_int(b->num / a->num));
+			FREE:
+				free(a);
+				free(b);
+			}
+		}
+		++temp;
+	}
+	int num = 0;
+	if (!empty_stack(stack))
+	{
+		num = ((Int*)top_stack(stack))->num;
+	}
+	free_value_stack(&stack);
+	return num;
+}
+
 int main()
 {
 	Stack *stack = init_stack();
 
 	//isMatch("(1 + 2 + 3) == (1 + ( 10)");
-	transform("(8 + (3 - 1)) * 5");
-
+	transform("(8*(3+1+1+7))*5)");
+	printf("%d\n", toNumber("8 3 1 1 7 + + + * 5 *"));
+	transform("(8+3+1+1+7)*5)");
+	printf("%d\n", toNumber("8 3 1 1 7 + + + + 5 *"));
 
 
 
