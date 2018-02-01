@@ -9,37 +9,46 @@ using namespace std;
 int main()
 {
 	cout << "构造:" << endl;
-	MyVector<int> vec(10, 0);
-	vec.printArray();
+	MyVector<int> vec;
+	for (int i = 1; i <= 10; ++i)
+		vec.push_back(i);
 
-	cout << "插入:" << endl;
-	vec.insert(vec.begin() + 5, 666);
-	vec.printArray();
+	for (int &i : vec)
+	{
+		cout << i << ' ' << endl;
+	}
+	cout << endl;
 
-	cout << "删除:" << endl;
-	vec.erase(vec.begin() + 5);
-	vec.printArray();
+	//vec.printArray();
 
-	cout << "清空:" << endl;
-	vec.clear();
-	vec.printArray();
+	//cout << "插入:" << endl;
+	//vec.insert(vec.begin() + 5, 666);
+	//vec.printArray();
 
-	cout << "添加:" << endl;
-	vec.push_back(123);
-	vec.printArray();
+	//cout << "删除:" << endl;
+	//vec.erase(vec.begin() + 5);
+	//vec.printArray();
 
-	cout << "at" << endl;
-	cout << vec.at(0) << endl;
+	//cout << "清空:" << endl;
+	//vec.clear();
+	//vec.printArray();
 
-	cout << "front" << endl;
-	cout << vec.front() << endl;
+	//cout << "添加:" << endl;
+	//vec.push_back(123);
+	//vec.printArray();
 
-	cout << "back" << endl;
-	cout << vec.back() << endl;
+	//cout << "at" << endl;
+	//cout << vec.at(0) << endl;
 
-	cout << "pop" << endl;
-	vec.pop_back();
-	vec.printArray();
+	//cout << "front" << endl;
+	//cout << vec.front() << endl;
+
+	//cout << "back" << endl;
+	//cout << vec.back() << endl;
+
+	//cout << "pop" << endl;
+	//vec.pop_back();
+	//vec.printArray();
 
 
 	system("pause");
