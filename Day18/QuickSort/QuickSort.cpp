@@ -88,7 +88,7 @@ void QuickSort1(int *array, int low, int high)
 }
 
 
-#define SIZE 100000
+#define SIZE 100
 
 int main()
 {
@@ -113,12 +113,15 @@ int main()
 	s = clock();
 	QuickSort1(array2, 0, SIZE - 1);
 	cout << "QuickSort1用时:" << clock() - s << "ms" << endl;
+	for (int i : array2)
+		cout << i << ' ';
+	cout << endl;
 
 	s = clock();
 	QuickSort<int*, int>(array1, 0, SIZE - 1);
 	cout << "QuickSort用时:" << clock() - s << "ms" << endl;
-
-
+	for (int i : array1)
+		cout << i << ' ';
 	cout << endl;
 	
 	//s = clock();
