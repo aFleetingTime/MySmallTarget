@@ -59,3 +59,19 @@ void free_stack(Stack **stack)
 		*stack = NULL;
 	}
 }
+
+void free_value_stack(Stack **stack)
+{
+	if (stack == NULL)
+		return;
+
+	Node *cur = (*stack)->head.next, *temp = NULL;
+	while (cur != NULL)
+	{
+		temp = cur->next;
+		free(cur);
+		cur = temp;
+	}
+	free(*stack);
+	*stack = NULL;
+}

@@ -29,3 +29,5 @@ size_t size_stack(Stack *stack);
 void clear_stack(Stack *stack);
 
 void free_stack(Stack **stack);
+
+void free_value_stack(Stack **stack);
