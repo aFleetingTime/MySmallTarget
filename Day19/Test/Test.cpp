@@ -35,6 +35,7 @@ void test()
 	};
 	root.left = &nodes[0];
 	root.right = &nodes[4];
+	nodes[0].right = &nodes[1];
 	nodes[1].left = &nodes[2];
 	nodes[1].right = &nodes[3];
 	nodes[4].right = &nodes[5];
