@@ -191,6 +191,24 @@ Int* make_int(int num)
 	return temp;
 }
 
+int caculate(int left, int right, char operator)
+{
+	switch (operator)
+	{
+	case '+':
+		return left + right;
+	case '-':
+		return left - right;
+	case '*':
+		return left * right;
+	case '/':
+		return left / right;
+	case '%':
+		return left % right;
+	}
+	return 0;
+}
+
 int toNumber(char *str)
 {
 	char *temp = str;
@@ -203,37 +221,30 @@ int toNumber(char *str)
 		}
 		else if (isOperator(*temp))
 		{
+			if (size_stack(stack) < 2)
+			{
+				goto End;
+			}
 			Int *a = (Int*)top_stack(stack);
 			pop_stack(stack);
 			Int *b = (Int*)top_stack(stack);
 			pop_stack(stack);
-			switch (*temp)
-			{
-			case '+':
-				push_stack(stack, (Node*)make_int(b->num + a->num));
-				goto FREE;
-			case '-':
-				push_stack(stack, (Node*)make_int(b->num - a->num));
-				goto FREE;
-			case '*':
-				push_stack(stack, (Node*)make_int(b->num * a->num));
-				goto FREE;
-			case '/':
-				push_stack(stack, (Node*)make_int(b->num / a->num));
-			FREE:
-				free(a);
-				free(b);
-			}
+			push_stack(stack, (Node*)make_int(caculate(b->num, a->num, *temp)));
+			free(a);
+			free(b);
 		}
 		++temp;
 	}
-	int num = 0;
-	if (!empty_stack(stack))
+	if (size_stack(stack) == 1)
 	{
-		num = ((Int*)top_stack(stack))->num;
+		int num = ((Int*)top_stack(stack))->num;
+		free_value_stack(&stack);
+		return num;
 	}
+	End:
+	printf("数字个数与运算符不符，请检查后缀表达式是否正确!\n");
 	free_value_stack(&stack);
-	return num;
+	return -1;
 }
 
 int main()
