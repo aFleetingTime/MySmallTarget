@@ -12,13 +12,43 @@ struct SetNode
 };
 
 template<class T>
-void print(SetNode<T> *node)
+void print1(SetNode<T> *node)
 {
 	if (node == nullptr)
 		return;
-	cout << node->data << endl;
-	print(node->left);
-	print(node->right);
+	cout << node->data << ' ';
+	print1(node->left);
+	print1(node->right);
+}
+
+template<class T>
+void print2(SetNode<T> *node)
+{
+	if (node == nullptr)
+		return;
+	print2(node->left);
+	cout << node->data << ' ';
+	print2(node->right);
+}
+
+template<class T>
+void print3(SetNode<T> *node)
+{
+	if (node == nullptr)
+		return;
+	print3(node->left);
+	print3(node->right);
+	cout << node->data << ' ';
+}
+
+template<class T>
+int getNum(SetNode<T> *node)
+{
+	if (node == nullptr)
+		return 0;
+	if (node->left == nullptr && node->right == nullptr)
+		return 1;
+	return getNum(node->right) + getNum(node->left);
 }
 
 void test()
@@ -41,7 +71,15 @@ void test()
 	nodes[4].right = &nodes[5];
 	nodes[5].left = &nodes[6];
 
-	print(&root);
+	print1(&root);
+	cout << endl;
+	print2(&root);
+	cout << endl;
+	print3(&root);
+	cout << endl;
+
+	cout << "叶子结点个数:" << endl;
+	cout << getNum(&root) << endl;
 }
 
 int main()
