@@ -163,6 +163,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FindNum", "Day18\FindNum\Fi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JosephusProblem", "Day18\JosephusProblem\JosephusProblem.vcxproj", "{91C8C4F8-9C4A-4A5C-942D-A04BA03111A1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuickSort", "Day18\QuickSort\QuickSort.vcxproj", "{EA89548F-BAB3-4695-9636-DF98ABEC654F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -707,6 +709,14 @@ Global
 		{91C8C4F8-9C4A-4A5C-942D-A04BA03111A1}.Release|x64.Build.0 = Release|x64
 		{91C8C4F8-9C4A-4A5C-942D-A04BA03111A1}.Release|x86.ActiveCfg = Release|Win32
 		{91C8C4F8-9C4A-4A5C-942D-A04BA03111A1}.Release|x86.Build.0 = Release|Win32
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Debug|x64.ActiveCfg = Debug|x64
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Debug|x64.Build.0 = Debug|x64
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Debug|x86.ActiveCfg = Debug|Win32
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Debug|x86.Build.0 = Debug|Win32
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Release|x64.ActiveCfg = Release|x64
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Release|x64.Build.0 = Release|x64
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Release|x86.ActiveCfg = Release|Win32
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -779,6 +789,7 @@ Global
 		{B934D924-242F-498A-956D-2C8BC8A8B76D} = {A8C9E85C-E2BA-4804-BA00-BD1840C044AB}
 		{041680E8-A08C-48F2-BAD7-102EC92E1FFD} = {DBB09A03-E9A6-4349-9CB7-AAFA9AC21E32}
 		{91C8C4F8-9C4A-4A5C-942D-A04BA03111A1} = {DBB09A03-E9A6-4349-9CB7-AAFA9AC21E32}
+		{EA89548F-BAB3-4695-9636-DF98ABEC654F} = {DBB09A03-E9A6-4349-9CB7-AAFA9AC21E32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9ABB9283-38E5-4BB6-B2D2-49BCF452277A}
