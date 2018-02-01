@@ -19,7 +19,7 @@ void push_stack(Stack *stack, Node *node)
 
 void pop_stack(Stack *stack)
 {
-	if (stack == NULL || !stack->size)
+	if (stack == NULL || stack->size == 0)
 		return;
 	stack->head.next = stack->head.next->next;
 	--stack->size;
@@ -27,6 +27,8 @@ void pop_stack(Stack *stack)
 
 Node* top_stack(Stack *stack)
 {
+	if (stack == NULL || stack->size == 0)
+		return NULL;
 	return stack->head.next;
 }
 
@@ -34,7 +36,7 @@ int empty_stack(Stack *stack)
 {
 	if (stack == NULL)
 		return -1;
-	return !stack->size;
+	return stack->size == 0;
 }
 
 size_t size_stack(Stack *stack)
@@ -49,6 +51,7 @@ void clear_stack(Stack *stack)
 	if (stack == NULL)
 		return;
 	stack->head.next = NULL;
+	stack->size = 0;
 }
 
 void free_stack(Stack **stack)

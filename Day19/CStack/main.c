@@ -1,5 +1,6 @@
 #include "CStack.h"
 #include <string.h>
+#include <ctype.h>
 
 typedef struct Test
 {
@@ -15,6 +16,12 @@ typedef struct Char
 	int index;
 }Char;
 
+
+int isOperator(char ch)
+{
+	return ch == '+' || ch == '-' || ch == '*' || ch == '/';
+}
+
 int isLeftBracket(char ch)
 {
 	return ch == '(';
@@ -23,6 +30,19 @@ int isLeftBracket(char ch)
 int isRightBracket(char ch)
 {
 	return ch == ')';
+}
+
+int getPriority(char ch)
+{
+	if (ch == '+' || ch == '-')
+	{
+		return 1;
+	}
+	else if (ch == '*' || ch == '/')
+	{
+		return 2;
+	}
+	return 0;
 }
 
 Char* createChar(char ch, int index)
@@ -79,12 +99,88 @@ int isMatch(char *str)
 	return 0;
 }
 
+void transform(char *str)
+{
+	Stack *stack = init_stack();
+	char *temp = str;
+	int index = 0;
+	while (*temp != '\0')
+	{
+		if (isdigit(*temp))
+		{
+			printf("%c ", *temp);
+		}
+		else if(isLeftBracket(*temp))
+		{
+			push_stack(stack, (Node*)createChar(*temp, index));
+		}
+		else if (isRightBracket(*temp))
+		{
+			Char *ch = (Char*)top_stack(stack);
+			while (!empty_stack(stack) && !isLeftBracket(ch->ch))
+			{
+				printf("%c ", ch->ch);
+				pop_stack(stack);
+				free(ch);
+				ch = (Char*)top_stack(stack);
+			}
+			if (isLeftBracket(ch->ch))
+			{
+				pop_stack(stack);
+				free(ch);
+			}
+		}
+		else if (isOperator(*temp))
+		{
+			if (empty_stack(stack))
+			{
+				push_stack(stack, (Node*)createChar(*temp, index));
+			}
+			else
+			{
+				Char *ch = (Char*)top_stack(stack);
+				if (getPriority(*temp) > getPriority(ch->ch))
+				{
+					push_stack(stack, (Node*)createChar(*temp, index));
+				}
+				else
+				{
+					while (!empty_stack(stack))
+					{
+						ch = (Char*)top_stack(stack);
+						printf("%c ", ch->ch);
+						if (getPriority(*temp) > getPriority(ch->ch))
+						{
+							push_stack(stack, (Node*)createChar(*temp, index));
+							break;
+						}
+						pop_stack(stack);
+						free(ch);
+					}
+				}
+			}
+		}
+		++temp;
+		++index;
+	}
+	Char *tempa = NULL;
+	while (!empty_stack(stack))
+	{
+		tempa = (Char*)top_stack(stack);
+		printf("%c ", tempa->ch);
+		pop_stack(stack);
+		free(tempa);
+	}
+	printf("\n");
+	free_value_stack(&stack);
+}
+
 int main()
 {
 	Stack *stack = init_stack();
 
 	//isMatch("(1 + 2 + 3) == (1 + ( 10)");
-	isMatch(")((1)) + 2 + 3) == (1 + ( 10)");
+	transform("(8 + (3 - 1)) * 5");
 
 
 
