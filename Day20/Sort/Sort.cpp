@@ -51,7 +51,7 @@ public:
 	}
 
 	template<class T>
-	void insertionSort(T *array, size_t length)
+	void insertSort(T *array, size_t length)
 	{
 		for (size_t i = 1; i < length; ++i)
 		{
@@ -66,6 +66,32 @@ public:
 				array[j + 1] = temp;
 			}
 		}
+	}
+
+	template<class T>
+	void shellsSort(T *array, size_t length)
+	{
+		size_t increasement = length;
+		do
+		{
+			increasement = increasement / 3 + 1;
+			for (size_t i = 0; i < increasement; ++i)
+			{
+				for (size_t j = i + increasement; j < length; j += increasement)
+				{
+					if (array[j] < array[j - increasement])
+					{
+						int k = j - increasement;
+						T temp = array[j];
+						for (; k >= 0 && array[k] > temp; k -= increasement)
+						{
+							array[k + increasement] = array[k];
+						}
+						array[k + increasement] = temp;
+					}
+				}
+			}
+		} while (increasement > 1);
 	}
 
 	template<class T>
@@ -110,14 +136,14 @@ int main()
 
 	for (int i = 0; i < MAX_SIZE; ++i)
 	{
-		array1[i] = random() % 100;
+		array1[i] = random() % MAX_SIZE;
 	}
 
-	clock_t s = clock() / CLOCKS_PER_SEC;
-	print_array(array1, MIN_SIZE);
-	sort.insertionSort(array1, MIN_SIZE);
-	print_array(array1, MIN_SIZE);
-	cout << "用时:" << clock() / CLOCKS_PER_SEC - s << endl;
+	clock_t s = clock();
+	//print_array(array1, MAX_SIZE);
+	sort.shellsSort(array1, MAX_SIZE);
+	//print_array(array1, MAX_SIZE);
+	cout << "用时:" << clock() - s << endl;
 
 	//print_array(array, MAX_SIZE);
 	//clock_t s = clock() / CLOCKS_PER_SEC;
