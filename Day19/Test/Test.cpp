@@ -90,7 +90,54 @@ void deleteBinaryTree(SetNode<T> **root)
 }
 
 template<class T>
-void print_binaryTree(SetNode<T> *root)
+class FunctionClass
+{
+public:
+	virtual void operator()(stack<pair<SetNode<T>*, bool>> &node, pair<SetNode<T>*, bool> &top) = 0;
+};
+
+template<class T>
+class Push : public FunctionClass<T>
+{
+public:
+	Push(const string &cmd)
+	{
+		mCmd = cmd;
+	}
+	void operator()(stack<pair<SetNode<T>*, bool>> &node, pair<SetNode<T>*, bool> &top) 
+	{
+		if (!mCmd.compare("中序"))
+		{
+			if (top.first->right != nullptr)
+				node.push(make_pair(top.first->right, false));
+			node.push(top);
+			if (top.first->left != nullptr)
+				node.push(make_pair(top.first->left, false));
+		}
+		else if (!mCmd.compare("后序"))
+		{
+			node.push(top);
+			if (top.first->right != nullptr)
+				node.push(make_pair(top.first->right, false));
+			if (top.first->left != nullptr)
+				node.push(make_pair(top.first->left, false));
+		}
+		else
+		{
+			if (top.first->right != nullptr)
+				node.push(make_pair(top.first->right, false));
+			if (top.first->left != nullptr)
+				node.push(make_pair(top.first->left, false));
+			node.push(top);
+		}
+	}
+
+private:
+	string mCmd;
+};
+
+template<class T>
+void print_binaryTree(SetNode<T> *root, FunctionClass<T> *fun)
 {
 	stack<pair<SetNode<T>*, bool>> node;
 	pair<SetNode<T>*, bool> temp;
@@ -105,14 +152,12 @@ void print_binaryTree(SetNode<T> *root)
 		}
 		else
 		{
-			if(temp.first->right != nullptr)
-				node.push(make_pair(temp.first->right, false));
-			if (temp.first->left != nullptr)
-				node.push(make_pair(temp.first->left, false));
 			temp.second = true;
-			node.push(temp);
+			(*fun)(node, temp);
 		}
 	}
+	cout << endl;
+	delete fun;
 }
 
 void test()
@@ -153,7 +198,13 @@ void test()
 	print1(&root);
 	cout << endl;
 	cout << "拷贝二叉树:";
-	print_binaryTree(&root);
+	print1(temp);
+	cout << endl << endl;
+
+	cout << "非递归遍历:" << endl;
+	print_binaryTree(&root, new Push<string>("先序"));
+	print_binaryTree(&root, new Push<string>("中序"));
+	print_binaryTree(&root, new Push<string>("后序"));
 	cout << endl;
 
 	deleteBinaryTree(&temp);
