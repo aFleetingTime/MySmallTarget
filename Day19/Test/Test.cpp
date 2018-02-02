@@ -160,6 +160,20 @@ void print_binaryTree(SetNode<T> *root, FunctionClass<T> *fun)
 	delete fun;
 }
 
+template<class T>
+SetNode<T>* createBinaryTree()
+{
+	char ch = cin.get();
+	if (ch == '#')
+		return nullptr;
+	SetNode<T> *root = new SetNode<T>;
+	root->data = ch;
+	root->left = createBinaryTree<T>();
+	root->right = createBinaryTree<T>();
+	return root;
+}
+
+
 void test()
 {
 	SetNode<string> root = { "A" };
@@ -209,6 +223,12 @@ void test()
 
 	deleteBinaryTree(&temp);
 	cout << endl;
+
+	cout << "´´½¨¶þ²æÊ÷:" << endl;
+	SetNode<char> *node = createBinaryTree<char>();
+	print1(node);
+	cout << endl;
+	deleteBinaryTree(&node);
 }
 
 int main()
