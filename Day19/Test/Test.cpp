@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <functional>
+#include <stack>
 
 using namespace std;
 
@@ -9,6 +12,10 @@ struct SetNode
 	TYPE data;
 	SetNode *left = nullptr;
 	SetNode *right = nullptr;
+	~SetNode()
+	{
+		cout << data << "析构" << ' ';
+	}
 };
 
 template<class T>
@@ -51,6 +58,63 @@ int getNum(SetNode<T> *node)
 	return getNum(node->right) + getNum(node->left);
 }
 
+template<class T>
+int getHeight(SetNode<T> *root)
+{
+	if (!root)
+		return 0;
+	return max(getHeight(root->left) + 1, getHeight(root->right) + 1);
+}
+
+template<class T>
+SetNode<T>* copyBinaryTree(SetNode<T> *root)
+{
+	if (!root)
+		return nullptr;
+	SetNode<T> *tree = new SetNode<T>;
+	tree->data = root->data;
+	tree->left = copyBinaryTree(root->left);
+	tree->right = copyBinaryTree(root->right);
+	return tree;
+}
+
+template<class T>
+void deleteBinaryTree(SetNode<T> **root)
+{
+	if (!*root)
+		return;
+	deleteBinaryTree(&(*root)->left);
+	deleteBinaryTree(&(*root)->right);
+	delete *root;
+	*root = nullptr;
+}
+
+template<class T>
+void print_binaryTree(SetNode<T> *root)
+{
+	stack<pair<SetNode<T>*, bool>> node;
+	pair<SetNode<T>*, bool> temp;
+	node.push(make_pair(root, false));
+	while (!node.empty())
+	{
+		temp = node.top();
+		node.pop();
+		if (temp.second)
+		{
+			cout << temp.first->data << ' ';
+		}
+		else
+		{
+			if(temp.first->right != nullptr)
+				node.push(make_pair(temp.first->right, false));
+			if (temp.first->left != nullptr)
+				node.push(make_pair(temp.first->left, false));
+			temp.second = true;
+			node.push(temp);
+		}
+	}
+}
+
 void test()
 {
 	SetNode<string> root = { "A" };
@@ -79,7 +143,21 @@ void test()
 	cout << endl;
 
 	cout << "叶子结点个数:" << endl;
-	cout << getNum(&root) << endl;
+	cout << getNum(&root) << endl << endl;
+
+	cout << "树的高度:" << endl;
+	cout << getHeight(&root) << endl << endl;
+
+	SetNode<string> *temp = copyBinaryTree(&root);
+	cout << "原二叉树:";
+	print1(&root);
+	cout << endl;
+	cout << "拷贝二叉树:";
+	print_binaryTree(&root);
+	cout << endl;
+
+	deleteBinaryTree(&temp);
+	cout << endl;
 }
 
 int main()
