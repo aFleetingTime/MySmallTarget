@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define MAX_SIZE 5000000
+#define MAX_SIZE 10
 #define MIN_SIZE 10
 
 class Sort
@@ -171,6 +171,37 @@ public:
 	}
 
 	template<class T>
+	void initHeap(T *array, int length)
+	{
+		int index = length / 2;
+		while (index != -1)
+		{
+			if (array[index] < array[index * 2])
+				swap(&array[index], &array[index * 2]);
+			if (array[index] < array[index * 2 + 1])
+				swap(&array[index], &array[index * 2 + 1]);
+			--index;
+		}
+	}
+
+	template<class T>
+	void heapSort(T *array, int length)
+	{
+		if (!length)
+			return;
+		swap(&array[0], &array[length]);
+		int end = length / 2;
+		for (int i = 0; i < end; ++i)
+		{
+			if (array[i] < array[i * 2])
+				swap(&array[i], &array[i * 2]);
+			if (array[i] < array[i * 2 + 1])
+				swap(&array[i], &array[i * 2 + 1]);
+		}
+		heapSort(array, length - 1);
+	}
+
+	template<class T>
 	void swap(T *a, T *b)
 	{
 		T temp = *a;
@@ -203,12 +234,15 @@ int main()
 
 	clock_t s = clock();
 	//print_array(array1, MAX_SIZE);
+	print_array(array1, MAX_SIZE);
 	//sort.mergeSort(array1, 0, MAX_SIZE - 1);
 	//sort.quickSort(array1, 0, MAX_SIZE - 1);
-	sort.shellsSort2(array1, MAX_SIZE - 1);
-	//print_array(array1, MAX_SIZE);
+	sort.initHeap(array1, MAX_SIZE - 1);
+	sort.heapSort(array1, MAX_SIZE - 1);
+	print_array(array1, MAX_SIZE);
 	cout << "ÓÃÊ±:" << clock() - s << endl;
 
+	delete[] array1;
 	//print_array(array, MAX_SIZE);
 	//clock_t s = clock() / CLOCKS_PER_SEC;
 	//sort.bubbleSort(array, MAX_SIZE);
