@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define MAX_SIZE 10
+#define MAX_SIZE 100
 #define MIN_SIZE 10
 
 class Sort
@@ -171,15 +171,18 @@ public:
 	}
 
 	template<class T>
-	void initHeap(T *array, int length)
+	void initHeap(T *array, int index, int length)
 	{
-		int index = length / 2;
+		int max = 0;
 		while (index != -1)
 		{
-			if (array[index] < array[index * 2])
-				swap(&array[index], &array[index * 2]);
-			if (array[index] < array[index * 2 + 1])
-				swap(&array[index], &array[index * 2 + 1]);
+			max = index;
+			if (array[max] < array[index * 2 + 1])
+				max = index * 2 + 1;
+			if (array[max] < array[index * 2 + 2])
+				max = index * 2 + 2;
+			if (max != index)
+				swap(&array[index], &array[max]);
 			--index;
 		}
 	}
@@ -190,13 +193,17 @@ public:
 		if (!length)
 			return;
 		swap(&array[0], &array[length]);
-		int end = length / 2;
+		int end = length / 2, max = 0;
 		for (int i = 0; i < end; ++i)
 		{
-			if (array[i] < array[i * 2])
-				swap(&array[i], &array[i * 2]);
-			if (array[i] < array[i * 2 + 1])
-				swap(&array[i], &array[i * 2 + 1]);
+			initHeap(array, i, length);
+			//max = i;
+			//if (array[max] < array[i * 2 + 1])
+			//	max = i * 2 + 1;
+			//if (array[max] < array[i * 2 + 2])
+			//	max = i * 2 + 2;
+			//if (max != i)
+			//	swap(&array[i], &array[max]);
 		}
 		heapSort(array, length - 1);
 	}
@@ -234,10 +241,10 @@ int main()
 
 	clock_t s = clock();
 	//print_array(array1, MAX_SIZE);
-	print_array(array1, MAX_SIZE);
+	//print_array(array1, MAX_SIZE);
 	//sort.mergeSort(array1, 0, MAX_SIZE - 1);
 	//sort.quickSort(array1, 0, MAX_SIZE - 1);
-	sort.initHeap(array1, MAX_SIZE - 1);
+	//sort.initHeap(array1, MAX_SIZE - 1);
 	sort.heapSort(array1, MAX_SIZE - 1);
 	print_array(array1, MAX_SIZE);
 	cout << "ÓÃÊ±:" << clock() - s << endl;
