@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define MAX_SIZE 100000
+#define MAX_SIZE 5000000
 #define MIN_SIZE 10
 
 class Sort
@@ -116,6 +116,61 @@ public:
 	}
 
 	template<class T>
+	void quickSort(T *array, int start, int end)
+	{
+		if (start >= end)
+			return;
+		T num = array[start];
+		int i = start, j = end;
+		while (i < j)
+		{
+			while (i < j && array[j] >= num)
+				--j;
+			array[i] = array[j];
+			while (i < j && array[i] <= num)
+				++i;
+			array[j] = array[i];
+		}
+		array[i] = num;
+		quickSort(array, start, i - 1);
+		quickSort(array, j + 1, end);
+	}
+
+	template<class T>
+	void myMerge(T *array, int start, int end)
+	{
+		int left_i = start, right_i = (start + end) / 2;
+		int left_j = (start + end) / 2 + 1, right_j = end;
+		int bufIndex = 0;
+		int *buf = new int[end - start + 1];
+		while (left_i <= right_i && left_j <= right_j)
+		{
+			if (array[left_i] > array[left_j])
+				buf[bufIndex++] = array[left_j++];
+			else
+				buf[bufIndex++] = array[left_i++];
+		}
+		while (left_i <= right_i)
+			buf[bufIndex++] = array[left_i++];
+		while (left_j <= right_j)
+			buf[bufIndex++] = array[left_j++];
+		for (bufIndex = 0; start <= end; ++bufIndex, ++start)
+			array[start] = buf[bufIndex];
+		delete[] buf;
+	}
+
+	template<class T>
+	void mergeSort(T *array, int start, int end)
+	{
+		if (start >= end)
+			return;
+		int mid = (start + end) / 2;
+		mergeSort(array, start, mid);
+		mergeSort(array, mid + 1, end);
+		myMerge(array, start, end);
+	}
+
+	template<class T>
 	void swap(T *a, T *b)
 	{
 		T temp = *a;
@@ -125,27 +180,13 @@ public:
 };
 
 template<class T>
-void print_array(T array, int length)
+void print_array(T *array, int length)
 {
 	for (int i = 0; i < length; ++i)
+	{
 		cout << array[i] << ' ';
+	}
 	cout << endl;
-}
-
-int sum()
-{
-	return 0;
-}
-template<class T, class ...Args>
-int sum(T num, Args... args)
-{
-	return num + sum(args...);
-}
-
-int sumx(initializer_list<int> args)
-{
-	initializer_list<int> argsa(args.begin() + 1, args.end());
-	return *args.begin() + (argsa.size() ? sumx(argsa) : 0);
 }
 
 int main()
@@ -153,21 +194,19 @@ int main()
 	random_device random;
 	Sort sort;
 
-	int array1[MAX_SIZE];
-	int array2[MAX_SIZE];
+	int *array1 = new int[MAX_SIZE];
 
 	for (int i = 0; i < MAX_SIZE; ++i)
 	{
-		int temp = random() % MAX_SIZE;
-		array1[i] = temp;
-		array2[i] = temp;
+		array1[i] = random() % MAX_SIZE;
 	}
 
 	clock_t s = clock();
-	sort.shellsSort2(array1, MAX_SIZE);
-	cout << "用时:" << clock() - s << endl;
-	s = clock();
-	sort.shellsSort(array2, MAX_SIZE);
+	//print_array(array1, MAX_SIZE);
+	//sort.mergeSort(array1, 0, MAX_SIZE - 1);
+	//sort.quickSort(array1, 0, MAX_SIZE - 1);
+	sort.shellsSort2(array1, MAX_SIZE - 1);
+	//print_array(array1, MAX_SIZE);
 	cout << "用时:" << clock() - s << endl;
 
 	//print_array(array, MAX_SIZE);
