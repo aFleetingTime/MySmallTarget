@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define MAX_SIZE 100
+#define MAX_SIZE 1000
 #define MIN_SIZE 10
 
 class Sort
@@ -174,15 +174,21 @@ public:
 	void initHeap(T *array, int index, int length)
 	{
 		int max = 0;
+		int mleft = 0, mright = 0;
 		while (index != -1)
 		{
 			max = index;
-			if (array[max] < array[index * 2 + 1])
-				max = index * 2 + 1;
-			if (array[max] < array[index * 2 + 2])
-				max = index * 2 + 2;
+			mleft = index * 2 + 1;
+			mright = index * 2 + 2;
+			if ((mleft < length) && (array[max] < array[mleft]))
+				max = mleft;
+			if ((mright < length) && (array[max] < array[mright]))
+				max = mright;
 			if (max != index)
+			{
 				swap(&array[index], &array[max]);
+				initHeap(array, max, length);
+			}
 			--index;
 		}
 	}
@@ -190,22 +196,27 @@ public:
 	template<class T>
 	void heapSort(T *array, int length)
 	{
-		if (!length)
+		if (length >= -1)
 			return;
 		swap(&array[0], &array[length]);
 		int end = length / 2, max = 0;
+		int mleft = 0, mright = 0;
 		for (int i = 0; i < end; ++i)
 		{
-			initHeap(array, i, length);
-			//max = i;
-			//if (array[max] < array[i * 2 + 1])
-			//	max = i * 2 + 1;
-			//if (array[max] < array[i * 2 + 2])
-			//	max = i * 2 + 2;
-			//if (max != i)
-			//	swap(&array[i], &array[max]);
+			max = i;
+			mleft = i * 2 + 1;
+			mright = i * 2 + 2;
+			if (mleft < length && array[max] < array[mleft])
+				max = mleft;
+			if (mright < length && array[max] < array[mright])
+				max = mright;
+			if (max != i)
+			{
+				swap(&array[i], &array[max]);
+			}
 		}
 		heapSort(array, length - 1);
+		
 	}
 
 	template<class T>
@@ -227,29 +238,53 @@ void print_array(T *array, int length)
 	cout << endl;
 }
 
+bool compare(int *array1, int len1, int *array2)
+{
+	for (int i = 0; i < len1; ++i)
+	{
+		if (array1[i] != array2[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 int main()
 {
 	random_device random;
 	Sort sort;
 
 	int *array1 = new int[MAX_SIZE];
+	int *array2 = new int[MAX_SIZE];
 
 	for (int i = 0; i < MAX_SIZE; ++i)
 	{
-		array1[i] = random() % MAX_SIZE;
+		int temp = random() % MAX_SIZE;
+		array2[i] = temp;
+		array1[i] = temp;
 	}
 
 	clock_t s = clock();
 	//print_array(array1, MAX_SIZE);
 	//print_array(array1, MAX_SIZE);
 	//sort.mergeSort(array1, 0, MAX_SIZE - 1);
-	//sort.quickSort(array1, 0, MAX_SIZE - 1);
-	//sort.initHeap(array1, MAX_SIZE - 1);
+	sort.quickSort(array2, 0, MAX_SIZE - 1);
+	sort.initHeap(array1, MAX_SIZE / 2 - 1, MAX_SIZE);
 	sort.heapSort(array1, MAX_SIZE - 1);
-	print_array(array1, MAX_SIZE);
+	//print_array(array1, MAX_SIZE);
 	cout << "用时:" << clock() - s << endl;
+	if (compare(array1, MAX_SIZE - 1, array2))
+	{
+		cout << "排序成功" << endl;
+	}
+	else
+	{
+		cout << "排序出错" << endl;
+	}
 
 	delete[] array1;
+	delete[] array2;
 	//print_array(array, MAX_SIZE);
 	//clock_t s = clock() / CLOCKS_PER_SEC;
 	//sort.bubbleSort(array, MAX_SIZE);
