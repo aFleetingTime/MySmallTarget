@@ -196,7 +196,7 @@ public:
 	template<class T>
 	void heapSort(T *array, int length)
 	{
-		if (length >= -1)
+		if (!length)
 			return;
 		swap(&array[0], &array[length]);
 		int end = length / 2, max = 0;
@@ -216,7 +216,6 @@ public:
 			}
 		}
 		heapSort(array, length - 1);
-		
 	}
 
 	template<class T>
@@ -274,7 +273,7 @@ int main()
 	sort.heapSort(array1, MAX_SIZE - 1);
 	//print_array(array1, MAX_SIZE);
 	cout << "用时:" << clock() - s << endl;
-	if (compare(array1, MAX_SIZE - 1, array2))
+	if (compare(array1, MAX_SIZE, array2))
 	{
 		cout << "排序成功" << endl;
 	}
