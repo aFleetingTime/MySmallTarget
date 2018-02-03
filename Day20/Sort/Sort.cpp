@@ -95,6 +95,27 @@ public:
 	}
 
 	template<class T>
+	void shellsSort2(T *array, size_t length)
+	{
+		size_t gap = length / 3 + 1;
+		do
+		{
+			gap = gap / 3 + 1;
+			for (size_t i = gap; i < length; i++)
+			{
+				int k = i;
+				T temp = array[i];
+				for (int j = i - gap; j >= 0 && array[j] > temp; j -= gap)
+				{
+					array[j + gap] = array[j];
+					k = j;
+				}
+				array[k] = temp;
+			}
+		} while (gap != 1);
+	}
+
+	template<class T>
 	void swap(T *a, T *b)
 	{
 		T temp = *a;
@@ -133,16 +154,20 @@ int main()
 	Sort sort;
 
 	int array1[MAX_SIZE];
+	int array2[MAX_SIZE];
 
 	for (int i = 0; i < MAX_SIZE; ++i)
 	{
-		array1[i] = random() % MAX_SIZE;
+		int temp = random() % MAX_SIZE;
+		array1[i] = temp;
+		array2[i] = temp;
 	}
 
 	clock_t s = clock();
-	//print_array(array1, MAX_SIZE);
-	sort.shellsSort(array1, MAX_SIZE);
-	//print_array(array1, MAX_SIZE);
+	sort.shellsSort2(array1, MAX_SIZE);
+	cout << "用时:" << clock() - s << endl;
+	s = clock();
+	sort.shellsSort(array2, MAX_SIZE);
 	cout << "用时:" << clock() - s << endl;
 
 	//print_array(array, MAX_SIZE);
