@@ -10,7 +10,7 @@ template<class T>
 class InitBinaryTree
 {
 public:
-	ThreadedBinaryNode<T> hitInitBinaryTree(BinaryNode<T> *root)
+	ThreadedBinaryNode<T> hitInitBinaryTree(ThreadedBinaryNode<T> *root)
 	{
 		ThreadedBinaryNode<T> *thr = new ThreadedBinaryNode<T>(nullptr, nullptr, 0, 1, T());
 		thr->mRight = thr;
@@ -18,11 +18,14 @@ public:
 			thr->mLeft = thr;
 		else
 		{
-			ThreadedBinaryNode<T> *mroot = new ThreadedBinaryNode<T>(nullptr, nullptr, root->mLeft, root->mRight, root->mData);
-			thr->mLeft = mroot;
+			thr->mLeft = root;
 			pre = thr;
-			hitTraversalTree(mroot);
+			hitTraversalTree(root);
+			pre->mRight = thr;
+			pre->rTag = 1;
+			thr->mRight = pre;
 		}
+		return thr;
 	}
 
 private:
@@ -32,7 +35,6 @@ private:
 		if (!thr)
 			return;
 		hitTraversalTree(thr->mLeft);
-		ThreadedBinaryNode<T> *node = new ThreadedBinaryNode<T>(nullptr, nullptr, root->mLeft, root->mRight, root->mData);
 		if (!thr->mLeft)
 		{
 			thr->mLeft = pre;
