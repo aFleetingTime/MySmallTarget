@@ -7,22 +7,9 @@
 using namespace std;
 
 template<class D_Type>
-struct BinaryNode
-{
-	BinaryNode(BinaryNode *left, BinaryNode *right, const D_Type &data)
-	{
-		this->mLeft = left;
-		this->mRight = right;
-		this->mData = data;
-	}
-	BinaryNode *mLeft;
-	BinaryNode *mRight;
-	D_Type mData;
-};
-
-template<class D_Type>
 struct ThreadedBinaryNode
 {
+public:
 	ThreadedBinaryNode(ThreadedBinaryNode *left, ThreadedBinaryNode *right, bool lTag, bool rTag, const D_Type &data)
 	{
 		this->mLeft = left;
@@ -36,6 +23,19 @@ struct ThreadedBinaryNode
 	ThreadedBinaryNode *mRight;
 	bool rTag;
 	D_Type mData;
+};
+
+template<class D_Type>
+struct BinaryNode : public ThreadedBinaryNode<D_Type>
+{
+public:
+	BinaryNode(BinaryNode *left, BinaryNode *right, const D_Type &data) : ThreadedBinaryNode<D_Type>(nullptr, nullptr, left, right, data)
+	{
+		mLeft = left;
+		mRight = right;
+	}
+	BinaryNode<D_Type> *mLeft;
+	BinaryNode<D_Type> *mRight;
 };
 
 template<class D_Type>
