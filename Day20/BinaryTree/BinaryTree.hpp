@@ -6,11 +6,14 @@
 
 using namespace std;
 
+template<class D_Type> struct BinaryNode;
+template<class D_Type> struct ThreadedBinaryNode;
+
 template<class D_Type>
 struct ThreadedBinaryNode
 {
 public:
-	ThreadedBinaryNode(ThreadedBinaryNode *left, ThreadedBinaryNode *right, bool lTag, bool rTag, const D_Type &data)
+	ThreadedBinaryNode(BinaryNode<D_Type> *left, BinaryNode<D_Type> *right, bool lTag, bool rTag, const D_Type &data)
 	{
 		this->mLeft = left;
 		this->mRight = right;
@@ -18,9 +21,11 @@ public:
 		this->rTag = rTag;
 		this->mData = data;
 	}
-	ThreadedBinaryNode *mLeft;
+	//ThreadedBinaryNode *mLeft;
+	BinaryNode<D_Type> *mLeft;
 	bool lTag;
-	ThreadedBinaryNode *mRight;
+	//ThreadedBinaryNode *mRight;
+	BinaryNode<D_Type> *mRight;
 	bool rTag;
 	D_Type mData;
 };
@@ -29,13 +34,13 @@ template<class D_Type>
 struct BinaryNode : public ThreadedBinaryNode<D_Type>
 {
 public:
-	BinaryNode(BinaryNode *left, BinaryNode *right, const D_Type &data) : ThreadedBinaryNode<D_Type>(nullptr, nullptr, left, right, data)
+	BinaryNode(BinaryNode *left, BinaryNode *right, const D_Type &data) : ThreadedBinaryNode<D_Type>(left, right, left, right, data)
 	{
-		mLeft = left;
-		mRight = right;
+		//mLeft = left;
+		//mRight = right;
 	}
-	BinaryNode<D_Type> *mLeft;
-	BinaryNode<D_Type> *mRight;
+	//BinaryNode<D_Type> *mLeft;
+	//BinaryNode<D_Type> *mRight;
 };
 
 template<class D_Type>
@@ -85,64 +90,6 @@ public:
 		if (!mRoot)
 			return;
 		mRemove(mRoot, data);
-
-
-
-
-		/*if (!mRoot)
-			return;
-		BinaryNode<D_Type> *temp = nullptr;
-		if(!(temp = ergodic([](BinaryNode<D_Type>* root, const D_Type &data) {
-			if (root->mLeft && root->mLeft->mData == data)
-				return true;
-			else if (root->mRight && root->mRight->mData == data)
-				return true;
-			else
-				return false;
-		}, data)))
-			return;
-		stack<pair<BinaryNode<D_Type>*, bool>> s;
-		pair<BinaryNode<D_Type>*, bool> t;
-		if (temp->mRight)
-		{
-			s.push(make_pair(, false));
-			BinaryNode<D_Type> *curRight = temp->mRight;
-			BinaryNode<D_Type> *rootLeft = curRight->mLeft;
-			while (rootLeft && rootLeft->mLeft)
-			{
-				curRight = rootLeft;
-				rootLeft = curRight->mLeft;
-			}
-			if (temp == curRight)
-			{
-				temp->mData = curRight->mData;
-				temp->mRight = curRight->mRight;
-				delete curRight;
-			}
-			else
-			{
-
-			}
-		}
-		else if(temp->mLeft)
-		{
-			s.push(make_pair(temp->mLeft, false));
-		}
-		else
-		{
-			if (temp->mLeft->mData == data)
-			{
-				delete temp->mLeft;
-				temp->mLeft = nullptr;
-			}
-			else
-			{
-				delete temp->mRight;
-				temp->mRight = nullptr;
-			}
-		}
-		*/
-		
 	}
 
 	void insert_NonRecursion(const D_Type &data)
