@@ -4,6 +4,19 @@
 
 using namespace std;
 
+class Test
+{
+public:
+	int test()
+	{
+		this.
+	}
+
+private:
+	static int a;
+};
+int Test::a = 0;
+
 int main()
 {
 	system("./mytest.exe");
