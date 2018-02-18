@@ -20,6 +20,8 @@ int Test::a = 0;
 int main()
 {
 	system("./mytest.exe");
+	void *a = static_cast<void*>(new Test);
+	Test *t = static_cast<Test*>(a);
 
 	while (true)
 	{
