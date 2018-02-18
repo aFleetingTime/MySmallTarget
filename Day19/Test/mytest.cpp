@@ -9,7 +9,7 @@ class Test
 public:
 	int test()
 	{
-		this.
+		void **v = nullptr;
 	}
 
 private:
