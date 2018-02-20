@@ -1,28 +1,39 @@
 #include <iostream>
+#include <string>
 #include <cstdlib>
 #include <conio.h>
+#include <memory>
+#include <Windows.h>
 
 using namespace std;
 
 class Test
 {
 public:
+	Test()
+	{
+		t = new int();
+	}
 	int test()
 	{
 		void **v = nullptr;
 	}
+	~Test()
+	{
+		cout << "..." << *t << endl;
+		delete t;
+		system("pause");
+	}
 
 private:
-	static int a;
+	int *t;
 };
-int Test::a = 0;
 
 int main()
 {
-	system("./mytest.exe");
-	void *a = static_cast<void*>(new Test);
-	Test *t = static_cast<Test*>(a);
-
+	auto_ptr<Test> a(new Test());
+	cout << "???" << endl;
+	a.release();
 	while (true)
 	{
 		if (_getch() == 'q')
