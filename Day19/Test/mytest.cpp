@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <conio.h>
 #include <memory>
+#include <vector>
+#include <string>
 #include <Windows.h>
 
 using namespace std;
@@ -31,14 +33,18 @@ private:
 
 int main()
 {
-	auto_ptr<Test> a(new Test());
-	cout << "???" << endl;
-	a.release();
-	while (true)
-	{
-		if (_getch() == 'q')
-			break;
-	}
-
+	vector<int> i{ 10,9,8,4,6,2,4,19,84,41 };
+	for (auto beg = i.begin(); beg != i.end(); ++beg)
+		cout << (*beg % 2 ? *beg *= 2 : *beg) << ' ';
+	cout << endl;
+	//auto_ptr<Test> a(new Test());
+	//cout << "???" << endl;
+	//a.release();
+	//while (true)
+	//{
+	//	if (_getch() == 'q')
+	//		break;
+	//}
+	system("pause");
 	return 0;
 }
