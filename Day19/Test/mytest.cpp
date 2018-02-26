@@ -39,6 +39,9 @@ int main()
 	cout << sizeof(x) / sizeof(*x) << endl;	//10
 	cout << sizeof(p) / sizeof(*p) << endl;	//1
 
+	int a = 0, b = 0;
+	cout << sizeof (a < b) << endl;
+
 	//char str[] = "test";
 	//constexpr size_t size = sizeof(str) / sizeof(*str);
 	//char s[size];
