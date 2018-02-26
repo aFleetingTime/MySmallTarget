@@ -37,6 +37,8 @@ int main()
 	for (auto beg = i.begin(); beg != i.end(); ++beg)
 		cout << (*beg % 2 ? *beg *= 2 : *beg) << ' ';
 	cout << endl;
+	int score = 100;
+	string a = (score > 90 ? "high pass" : (score >= 75 ? "low pass" : (score >= 60 ? "pass" : "fail")));
 	//auto_ptr<Test> a(new Test());
 	//cout << "???" << endl;
 	//a.release();
