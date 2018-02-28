@@ -8,6 +8,7 @@
 #include <sstream>
 #include <array>
 #include <Windows.h>
+#include "mytest.h"
 
 
 using namespace std;
@@ -18,12 +19,10 @@ public:
 	Test()
 	{
 		cout << "Test()" << endl;
-		t = new int();
 	}
 	Test(const int *b, const int *e)
 	{
 		cout << "Test()" << endl;
-		t = new int();
 	}
 	int test()
 	{
@@ -31,13 +30,14 @@ public:
 	}
 	~Test()
 	{
-		cout << "..." << *t << endl;
-		delete t;
+		cout << "..." << endl;
+	}
+	void operator=(const Test &t)
+	{
+		cout << "operator=" << endl;
 	}
 	int aa;
 
-private:
-	int *t;
 };
 
 class Word
@@ -172,8 +172,184 @@ string (&testtt(string (&s)[10]))[10]
 	return s;
 }
 
+void overloaded(int a)
+{
+	cout << "int" << endl;
+}
+
+void overloaded(string a)
+{
+	cout << "string" << endl;
+}
+
+void overloaded(char c)
+{
+	cout << "char" << endl;
+}
+
+void foo()
+{
+	void overloaded(char c);
+	void overloaded(string a);
+	overloaded("1");
+}
+
+void aaa(int a = 0, int b = 0);
+void aaa(int a, int bx)
+{
+
+}
+constexpr int aaaa(const int a)
+{
+	return a;
+}
+
+
+//void f(double a, double b = 3.14)
+//{
+//	cout << "double double" << endl;
+//}
+void f(int a, int b)
+{
+	cout << "int int" << endl;
+}
+void f(const int *a)
+{
+	cout << "const int" << endl;
+}
+//void f(const int &a, const int &b)
+//{
+//	cout << "const int  const int" << endl;
+//}
+void f()
+{
+	cout << "void" << endl;
+}
+
+//void (*func(int a))(int, int)
+//{
+//	return f;
+//}
+auto func(int a) -> void(*)(int,int)
+{
+	return f;
+}
+//decltype(f(0,0)) *func(int a)
+//{
+//	return f;
+//}
+
+istream &st(istream &s)
+{
+	int a = 0;
+	s >> a;
+	return s;
+}
+
+Test ttttt()
+{
+	Test A;
+	Test B = A;
+	return B;
+}
+
+
+class ClassT
+{
+public:
+	ClassT() = default;
+	ClassT(int a)
+	{
+
+	}
+	int a;
+};
+Test ttttt();
+class Class
+{
+	friend Test ttttt();
+public:
+	using myint = int;
+	int t() const
+	{
+		this->b = 100;
+	}
+	Class(int aa = 0) : b(2), c(3)
+	{
+		
+	}
+	inline void testt();
+	vector<int> v{10,10};
+	mutable int b;
+	int c;
+	int a = b + c;
+	//int a;
+	//int b;
+	//int c;
+};
+
+inline void Class::testt()
+{
+
+}
+
+class Screen
+{
+public:
+	using pos_t = string::size_type;
+	Screen() = default;
+	Screen(pos_t h, pos_t w, char c = ' ') : ht(h), wd(w), contents(h * w, c) {}
+	void some_member() const;
+private:
+	pos_t ht = 0, wd = 0;
+	string contents;
+	mutable size_t count = 0;
+};
+
+void Screen::some_member() const
+{
+	++count;
+}
+
+class Window
+{
+public:
+private:
+	vector<Screen> screens{ 10, Screen(10, 20) };
+};
+
 int main()
 {
+	Class s;
+	cout << s.a << endl;
+
+	//Test a;
+	//const_cast<const Test>(a);
+
+	//ttttt();
+
+	//Test(Test()).
+	//vector<void(*(int))(int, int)> v;
+	//v.push_back(func);
+
+	//string s("aaaaa");
+	//constexpr int i = 0;
+	//int a = s.size();
+
+	//const int a = 0;
+	//f(&a);
+
+	////f(2.56, 42);
+	//f(42);
+	//f(42, 0);
+	//f(2.56, 3.14);
+
+	//int i = 1;
+	//aaaa(i);
+	//cout << sss("aaa") << endl;
+	//int a[];
+
+
 	//string s[10];
 	//string * const &p = s;
 	//string (&p)[10] = s;
