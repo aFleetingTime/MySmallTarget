@@ -130,6 +130,11 @@ void function3(const MyClass &c)
 {
 
 }
+int ff = 1;
+void function3(int a = ff)
+{
+
+}
 //constexpr int aaa(int &a)
 //{
 //	//a = 10;
@@ -139,25 +144,41 @@ void function3(const MyClass &c)
 class Debug1
 {
 public:
-	constexpr Debug1(bool b = true) : Debug1(b, b, b) { ss = 1; }
-	constexpr Debug1(bool ib, bool hb, bool ob) : IOError(ib), HWError(hb), OTError(ob) {}
+	constexpr Debug1(bool b = flag) : Debug1(b, b, b) { }
+	constexpr Debug1(bool ib, bool hb, bool ob) : IOError(ib), HWError(hb), OTError(ob), arr{} { }
 	constexpr bool any() const { return IOError || HWError || OTError; }
 	void setIO(bool b) { IOError = b; }
 	void setHW(bool b) { HWError = b; }
 	void setOT(bool b) { OTError = b; }
+	static void setFlag(bool b) { flag = b; }
+	static constexpr int ss = 10;
+
 private:
 	bool IOError;
 	bool HWError;
 	bool OTError;
-	static int ss;
+	static bool flag;
+	int arr[ss];
+	static vector<double> dd;
 };
-int Debug1::ss = 0;
+bool Debug1::flag = true;
+vector<double> Debug1::dd(ss);
+constexpr int Debug1::ss;
 
+void f(const int &i)
+{
+
+}
 
 int main()
 {
+	//int a[Debug1::aaa]
 	//constexpr Debug1 deb;
-	cout << boolalpha << is_literal_type<Debug1>::value << endl;
+	Debug1 d;
+	cout << boolalpha << d.any() << endl;
+	Debug1::setFlag(false);
+	Debug1 db;
+	cout << boolalpha << db.any() << endl;
 
 	//int i = 2 + 1;
 	//int ss[aaa(3)];
