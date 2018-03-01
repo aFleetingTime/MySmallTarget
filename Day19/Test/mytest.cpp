@@ -270,9 +270,9 @@ class Class
 	friend Test ttttt();
 public:
 	using myint = int;
-	int t() const
+	void t() const
 	{
-		this->b = 100;
+		
 	}
 	Class(int aa = 0) : b(2), c(3)
 	{
@@ -355,12 +355,20 @@ struct my_is_same<Type1, Type1> : trueType
 
 int main()
 {
-	cout << my_is_same<int, int>::value << endl;
-	cout << C1<int, double>::value << endl;
-	cout << is_same<int, double>::value << endl;
-	C1<int, double> c;
-	int a = 2;
-	cout << a << " " << a++ << endl;
+	const int *const a = nullptr;
+	int **b = const_cast<int**const>(&a);
+	int i = 100;
+	*b = &i;
+	if (a == nullptr)
+		cout << "nullptr" << endl;
+
+
+	//cout << my_is_same<int, int>::value << endl;
+	//cout << C1<int, double>::value << endl;
+	//cout << is_same<int, double>::value << endl;
+	//C1<int, double> c;
+	//int a = 2;
+	//cout << a << " " << a++ << endl;
 
 	//Class s;
 	//cout << s.a << endl;
