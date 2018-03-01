@@ -1,4 +1,6 @@
 #include "Sereen.h"
+#include "Window.h"
+
 
 Screen::Screen(pos_t h, pos_t w, char c) : mHeight(h), mWidth(w), mScreen(h * w, c) {}
 
@@ -40,4 +42,9 @@ const Screen &Screen::desplay(std::ostream &os) const
 {
 	doDisplay(os);
 	return *this;
+}
+
+Screen::ScreenSize Screen::size() const
+{
+	return mHeight * mWidth;
 }

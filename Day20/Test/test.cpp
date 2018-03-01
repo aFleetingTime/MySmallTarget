@@ -30,23 +30,159 @@ void test1(int (*const &p)[10])
 	//}
 }
 
-class Y; class X;
+struct Y; struct X;
 
 struct X
 {
 	Y *y;
 };
-
+using a = int;
 struct Y
 {
+	a test()
+	{
+
+	}
+	using a = double;
 	X x;
 };
 
+class Exercise
+{
+public:
+	Exercise(int a, int b)
+	{
+		cout << "(int,int)" << endl;
+
+	}
+	Exercise(int a) : Exercise(a, 1)
+	{
+		cout << "(int)" << endl;
+
+	}
+	Exercise() : Exercise(1)
+	{
+		cout << "(void)" << endl;
+
+	}
+
+private:
+	int val;
+};
+
+class Date
+{
+public:
+	Date(const string &year, const string &month = "01", const string &day = "01") : mYear(year), mMonth(month), mDay(day) {}
+	Date() : Date("2018") {}
+
+private:
+	string mYear;
+	string mMonth;
+	string mDay;
+};
+
+struct NoDefault
+{
+	NoDefault(int num)
+	{
+
+	}
+};
+
+struct C
+{
+public:
+	C() : nod(0)
+	{
+
+	}
+
+private:
+	NoDefault nod;
+};
+
+struct MyClass
+{
+	MyClass(const string &str)
+	{
+		cout << "MyClass(string)" << endl;
+	}
+	MyClass(const MyClass &str)
+	{
+		cout << "MyClass(MyClass)" << endl;
+	}
+	void operator=(const MyClass &str)
+	{
+		cout << "MyClass(MyClass)" << endl;
+	}
+};
+
+void function1(MyClass c)
+{
+
+}
+void function2(MyClass &&c)
+{
+
+}
+void function3(const MyClass &c)
+{
+
+}
+//constexpr int aaa(int &a)
+//{
+//	//a = 10;
+//	return a;
+//}
+
+class Debug1
+{
+public:
+	constexpr Debug1(bool b = true) : Debug1(b, b, b) { ss = 1; }
+	constexpr Debug1(bool ib, bool hb, bool ob) : IOError(ib), HWError(hb), OTError(ob) {}
+	constexpr bool any() const { return IOError || HWError || OTError; }
+	void setIO(bool b) { IOError = b; }
+	void setHW(bool b) { HWError = b; }
+	void setOT(bool b) { OTError = b; }
+private:
+	bool IOError;
+	bool HWError;
+	bool OTError;
+	static int ss;
+};
+int Debug1::ss = 0;
+
+
 int main()
 {
-	Y y;
-	y.x.y = &y;
-	y.x.y->x.y->x.y->x.y->x.y->x.y->x.y->x.y->x.y->x;
+	//constexpr Debug1 deb;
+	cout << boolalpha << is_literal_type<Debug1>::value << endl;
+
+	//int i = 2 + 1;
+	//int ss[aaa(3)];
+	//cout << i << endl;
+	//MyClass &&y = MyClass(string("aa"));
+	//string s("aaa");
+	//function1(s);
+	//function2(s);
+	//function3(s);
+
+	//MyClass a("aaa");
+	//MyClass a("aaa");
+	//function(string("a"));
+
+	//C a;
+	////vector<NoDefault> v(10, NoDefault(10));
+	//vector<C> v(10);
+	//Exercise();
+	//using a = int;
+	//using a = int;
+
+	//Exercise aa;
+	//Y y;
+	//y.x.y = &y;
+	//y.x.y->x.y->x.y->x.y->x.y->x.y->x.y->x.y->x.y->x;
 
 
 	////int array[x][y]{};
@@ -62,7 +198,7 @@ int main()
 	//		cout << a << ' ';
 	//	cout << endl;
 	//}
-	cout << (a += 10).min() << endl;
+	//cout << (a += 10).min() << endl;
 
 	system("pause");
 	return 0;

@@ -1,10 +1,16 @@
+#pragma once
 #include <iostream>
 #include <string>
+
+class Window;
 
 class Screen
 {
 public:
+	friend class Window;
 	using pos_t = std::string::size_type;
+	using ScreenSize = std::string::size_type;
+
 	Screen() = default;
 	Screen(const pos_t h, const pos_t w, const char c);
 
@@ -15,6 +21,7 @@ public:
 	char get(pos_t r, pos_t c) const;
 	Screen &desplay(std::ostream &os);
 	const Screen &desplay(std::ostream &os) const;
+	ScreenSize size() const;
 
 private:
 	void doDisplay(std::ostream &os) const;
