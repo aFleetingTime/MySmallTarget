@@ -278,7 +278,7 @@ public:
 	{
 		
 	}
-	inline void testt();
+	inline void testt() const;
 	vector<int> v{10,10};
 	mutable int b;
 	int c;
@@ -288,9 +288,10 @@ public:
 	//int c;
 };
 
-inline void Class::testt()
+inline void Class::testt() const
 {
-
+	Class *consta = const_cast<Class*>(this);
+	consta->a = 10000;
 }
 
 class Screen
@@ -355,12 +356,16 @@ struct my_is_same<Type1, Type1> : trueType
 
 int main()
 {
-	const int *const a = nullptr;
-	int **b = const_cast<int**const>(&a);
-	int i = 100;
-	*b = &i;
-	if (a == nullptr)
-		cout << "nullptr" << endl;
+	Class a;
+	a.testt();
+	cout << a.a << endl;
+
+	//const int *const a = nullptr;
+	//int **b = const_cast<int**const>(&a);
+	//int i = 100;
+	//*b = &i;
+	//if (a == nullptr)
+	//	cout << "nullptr" << endl;
 
 
 	//cout << my_is_same<int, int>::value << endl;

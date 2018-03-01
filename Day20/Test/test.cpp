@@ -30,13 +30,30 @@ void test1(int (*const &p)[10])
 	//}
 }
 
+class Y; class X;
+
+struct X
+{
+	Y *y;
+};
+
+struct Y
+{
+	X x;
+};
+
 int main()
 {
-	//int array[x][y]{};
-	array<int, x> A{1,2,3,4,5};
-	//initArray(array);
-	
-	valarray<int> a(A.data(), 5);
+	Y y;
+	y.x.y = &y;
+	y.x.y->x.y->x.y->x.y->x.y->x.y->x.y->x.y->x.y->x;
+
+
+	////int array[x][y]{};
+	//array<int, x> A{1,2,3,4,5};
+	////initArray(array);
+	//
+	//valarray<int> a(A.data(), 5);
 	//a.apply();
 	//test1(array);
 	//for (const auto &p : array)
