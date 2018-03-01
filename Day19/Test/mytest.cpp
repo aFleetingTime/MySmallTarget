@@ -318,10 +318,52 @@ private:
 	vector<Screen> screens{ 10, Screen(10, 20) };
 };
 
+template<typename T1, typename T2>
+class C1
+{
+public:
+	static constexpr bool value = false;
+};
+//template<typename T1, typename T2>
+//constexpr bool C1<T1, T2>::value = false;
+
+template<typename T>
+class C1<T, T>
+{
+public:
+	static constexpr bool value = true;
+};
+//template<typename T>
+//constexpr bool C1<T, T>::value = true;
+
+template<typename Type1, Type1 Type2>
+struct Compare
+{
+	static constexpr bool value = Type2;
+};
+using trueType = Compare<bool, true>;
+using falseType = Compare<bool, false>;
+
+template<typename Type1, typename Type2>
+struct my_is_same : falseType
+{
+};
+template<typename Type1>
+struct my_is_same<Type1, Type1> : trueType
+{
+};
+
 int main()
 {
-	Class s;
-	cout << s.a << endl;
+	cout << my_is_same<int, int>::value << endl;
+	cout << C1<int, double>::value << endl;
+	cout << is_same<int, double>::value << endl;
+	C1<int, double> c;
+	int a = 2;
+	cout << a << " " << a++ << endl;
+
+	//Class s;
+	//cout << s.a << endl;
 
 	//Test a;
 	//const_cast<const Test>(a);
