@@ -1,8 +1,10 @@
 #include <iostream>
+#include <string>
 #include <iterator>
 #include <random>
 #include <valarray>
 #include <array>
+#include <fstream>
 #include <ObjectArray.h>
 
 using namespace std;
@@ -165,20 +167,112 @@ bool Debug1::flag = true;
 vector<double> Debug1::dd(ss);
 constexpr int Debug1::ss;
 
-void f(const int &i)
+void f(istream &i, ostream &o, ostream &e)
 {
-
+	int s = 0;
+	while (i >> s || !i)
+	{
+		istream::iostate state = i.rdstate();
+		if (state & istream::failbit)
+		{
+			e << "输入的数据类型错误" << endl;
+			i.clear();
+		}
+		else
+			o << s << endl;
+	}
 }
+
+istream &getdata(istream &is)
+{
+	string str;
+	while (!is.eof())
+	{
+		string temp;
+		is >> temp;
+		str += temp + ' ';
+	}
+	cout << str << endl;
+	is.clear(is.rdstate() & ~istream::eofbit);
+	return is;
+}
+istream &funcc(istream &is)
+{
+	ios::_Myos *p = is.tie();
+	if (p == &cout)
+		cout << "cout" << endl;
+	ofstream ofs;
+	is.tie(&ofs);
+	return is;
+}
+
+struct Teest
+{
+	Teest(char *p) { cout << "const char *" << endl; }
+	Teest(const string &s) { cout << "const string &" << endl; }
+};
+
+using sss = string;
 
 int main()
 {
+	string ssss("bbbb");
+	"aaaa" + ssss;
+	cout << boolalpha << cout.eof() << endl;
+	sss s;
+	string ss;
+	s = ss;
+	cout << ios::out << endl;
+	cout << ios::in << endl;
+
+
+	//if (cout.tie() == nullptr)
+	//	cout << "nullptr" << endl;
+	//ostream *p = cerr.tie();
+	//ifstream(string("a"),)
+	//p->put('a');
+
+	//funcc(cin);
+	//int i = 0;
+	//cin >> i;
+
+	/*cout.tie(&cout);
+	cin.tie(&cout);
+	cin.tie(&cout);*/
+
+	//cout << "a";
+	//cout << unitbuf << "a";
+	//streambuf *buf = cout.rdbuf();
+	//buf->sputn("aaa", 3);
+
+	//Sleep(10000);
+	//getdata(cin);
+
+	//cout << boolalpha << is_same<iostream::iostate, short>::value << endl;
+	//cout << (cin.rdstate() | cin.failbit | cin.badbit) << endl;
+	//cout << cin.rdstate() << endl;
+	//cout << (cin.rdstate() & cin.failbit & cin.badbit) << endl;
+	//cin.setstate(cin.failbit | cin.badbit | cin.eofbit);
+	//cout << endl;
+	//cout << cin.rdstate() << endl;
+	//cout << (cin.rdstate() & ~cin.failbit & ~cin.badbit) << endl;
+
+	//wstringbuf a;
+	//wstring a;
+	//ostream::iostate;
+	////streambuf s;
+	//ofstream a("a", );
+	//int a;
+	//wcin >> a;
+	//wcout << a << endl;
+
 	//int a[Debug1::aaa]
 	//constexpr Debug1 deb;
-	Debug1 d;
-	cout << boolalpha << d.any() << endl;
-	Debug1::setFlag(false);
-	Debug1 db;
-	cout << boolalpha << db.any() << endl;
+	//Debug1 d;
+	//cout << boolalpha << d.any() << endl;
+	//Debug1::setFlag(false);
+	//Debug1 db;
+	//cout << boolalpha << db.any() << endl;
 
 	//int i = 2 + 1;
 	//int ss[aaa(3)];
